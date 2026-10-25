@@ -1,125 +1,125 @@
 export const templeStylesData = [
   {
     id: "dravidian",
-    name: "Classical Dravidian",
-    era: "6th – 12th Century CE",
-    origin: "Pallava & Early Chola Heartland",
-    description: "The foundational architectural lexicon of South Indian temples. Defined by square sanctums (Garbhagriha), tiered pyramidal superstructures (Vimanas) capped by octagonal or circular stone domical crowns (Shikharas), and pillared ardha-mandapams.",
+    name: "Dravidian temple style",
+    era: "South India",
+    origin: "Seen across many regions and periods",
+    description: "A broad family of South Indian temple designs, often recognised by tiered towers, sculpted details and columned halls. Each temple reflects its own place, period and community.",
     keyFeatures: [
-      "Adhisthana (Moulded stone plinth with lotus and elephant friezes)",
-      "Pilasters with refined capital brackets (Kuta and Sala niches)",
-      "Strict horizontal tier registers (Talas) ascending harmoniously",
-      "Kudu arched windows and decorative horse-shoe gavaksha motifs"
+      "A sanctum with a tower above it",
+      "Carved stone or plaster details",
+      "Halls and pathways around the sanctum",
+      "Materials and decoration shaped by local practice"
     ],
-    canonicalText: "Mayamata & Manasara Shilpa Shastras",
-    stonePreference: "Gneissic Granite, Dark Krishna Shila"
+    canonicalText: "Mayamata & Manasara are traditional design references",
+    stonePreference: "Stone and other materials vary by place"
   },
   {
     id: "chola",
-    name: "Imperial Chola",
-    era: "9th – 13th Century CE",
-    origin: "Thanjavur, Gangaikonda Cholapuram & Darasuram",
-    description: "The zenith of monumental granite engineering in world history. Marked by colossal Vimanas that dramatically dwarf the peripheral entrance gopurams. Built exclusively of massive interlocking granite monoliths engineered to withstand millennia without structural decay.",
+    name: "Chola-period temples",
+    era: "Chola period",
+    origin: "Examples include Thanjavur and Darasuram",
+    description: "Temples from the Chola period are known for carefully composed stone architecture. Their layouts and details vary; historic examples can be useful references when discussing a new design.",
     keyFeatures: [
-      "Monumental Vimana (Up to 216 feet) crowned with a single 80-tonne monolithic cupola",
-      "Double-storeyed sanctum ambulatory corridor (Sandhara)",
-      "Heroic scale, severe geometric perfection, and minimal superficial ornament",
-      "Integrated water engineering (sacred Teppakulam reservoirs)"
+      "Prominent sanctum towers at some sites",
+      "Stone sculpture and inscriptions",
+      "Courtyards and connected temple spaces",
+      "Details that reflect the place and period"
     ],
-    canonicalText: "Brihat Samhita & Kamika Agama",
-    stonePreference: "Dense Plutonic Granite (Karunkal)"
+    canonicalText: "Historic temples are useful design references",
+    stonePreference: "Stone choices vary by temple and location"
   },
   {
     id: "pandya",
-    name: "Later Pandya",
-    era: "12th – 14th Century CE",
-    origin: "Madurai & Tirunelveli Basin",
-    description: "A profound spatial paradigm shift: the peripheral entrance towers (Rajagopurams) grew colossal and soared far higher than the central sanctum Vimana. Features graceful concave silhouette curves and deeply undercut stone relief carvings.",
+    name: "Pandya-period temples",
+    era: "Pandya period",
+    origin: "Examples across Madurai and Tirunelveli regions",
+    description: "Pandya-period temple sites include gateways, courtyards and richly detailed stonework. The arrangement differs from one temple to another and developed over time.",
     keyFeatures: [
-      "Sky-scraping Rajagopuram gateways with 7, 9, or 11 diminishing tiers",
-      "Curved roll-cornices (Kodungai) with water drop stone droplets",
-      "Elaborate Kirtimukha (Face of Glory) crests crowning each tier",
-      "Expansive concentric prakaram stone boulevards"
+      "Gateway towers at many temple entrances",
+      "Carved stone architectural details",
+      "Courtyards and circumambulatory paths",
+      "Designs shaped by local history"
     ],
-    canonicalText: "Kasyapa Shilpa Shastra",
-    stonePreference: "Granite Plinths with Brick-Lime Superstructure"
+    canonicalText: "Local temple examples and traditions guide the discussion",
+    stonePreference: "Materials vary by site"
   },
   {
     id: "vijayanagara",
-    name: "Vijayanagara & Nayaka",
-    era: "14th – 17th Century CE",
-    origin: "Hampi, Madurai & Rameswaram",
-    description: "The theatrical and acoustic peak of South Indian sacred design. Characterized by vast 1,000-pillar hypostyle halls (Kalyana Mandapams), monolithic musical columns tuned to musical scales, and rearing mythical Yali horsemen.",
+    name: "Vijayanagara & Nayaka temples",
+    era: "Vijayanagara and Nayaka periods",
+    origin: "Examples include Hampi and Madurai",
+    description: "Temples from these periods are often associated with large columned halls and elaborate sculpture. The form and decoration depend on the individual site.",
     keyFeatures: [
-      "Monolithic musical pillars that chime tones when tapped",
-      "Rearing Yali and rampant cavalry beast columns carved from single stones",
-      "Elaborate pushpa-potika (hanging floral bud) brackets",
-      "Corbelled granite stone ceilings with inverted lotus bosses"
+      "Columned halls for gatherings",
+      "Sculpted pillars and brackets",
+      "Carved stone ceilings and details",
+      "Spaces shaped for worship and community use"
     ],
-    canonicalText: "Suprabhedagama & Shilpa Ratna",
-    stonePreference: "Resonant Crystalline Biotite Granite"
+    canonicalText: "Historic buildings offer examples, not a single fixed template",
+    stonePreference: "Materials vary by region and building"
   }
 ];
 
 export const templeAnatomyData = [
   {
     id: "gopuram",
-    name: "Gopuram (राजगोपुरम्)",
-    role: "The Monumental Gateway Tower",
-    meaning: "The cosmic threshold bridging the mundane exterior world with the sacred interior reality. Symbolizes the feet of the cosmic deity (Viraat Purusha).",
-    geometry: "Oblong rectangular base tapering vertically with a trapezoidal profile, topped with a barrel-vaulted Shala roof and gold-plated Kalasam finials (always an odd number: 5, 7, 9, or 11).",
-    materials: "Dressed granite base (adhisthana) with sculpted stone and lime-mortar superstructure.",
-    significance: "Visible from miles away, reminding travelers to orient their consciousness toward the divine.",
+    name: "Gopuram (gateway tower)",
+    role: "Entrance tower",
+    meaning: "A tower commonly built over an entrance to a South Indian temple. Its form and decoration depend on the temple and local tradition.",
+    geometry: "Often built in a tiered form above the gateway.",
+    materials: "Materials vary. Some examples combine a stone base with plastered upper levels.",
+    significance: "Helps mark the entrance and creates a transition into the temple spaces.",
     hotspot: { x: "28%", y: "35%" }
   },
   {
     id: "vimana",
-    name: "Vimana (विमान)",
-    role: "The Sacred Sanctum Tower",
-    meaning: "The vertical axis mundi directly crowning the Garbhagriha. Represents the cosmic mountain (Mount Meru) and channels celestial cosmic energy downward into the deity.",
-    geometry: "Square base ascending in stepped pyramidal horizontal tiers (Talas), capped by the Greeva (neck), Shikhara (domical stone crown), and Stupi (finial).",
-    materials: "100% solid granite monolithic interlocking masonry.",
-    significance: "The heart and soul of the temple; in Chola tradition, the Vimana dominates the entire landscape.",
+    name: "Vimana (sanctum tower)",
+    role: "Tower above the sanctum",
+    meaning: "The tower built above the inner sanctum in many South Indian temple styles.",
+    geometry: "Its shape and number of tiers vary by region, period and temple.",
+    materials: "Materials depend on the design, local practice and project.",
+    significance: "A prominent part of the temple's design above the sanctum.",
     hotspot: { x: "72%", y: "24%" }
   },
   {
     id: "garbhagriha",
-    name: "Garbhagriha (गर्भगृह)",
-    role: "The Womb Chamber / Inner Sanctum",
-    meaning: "The silent, unadorned center of pure consciousness. Where the consecrated Moolavar deity resides in complete focus and darkness, lit only by oil lamps.",
-    geometry: "Perfect square based on the 1x1 central Brahma-sthana of the Vastu Mandala. Thick monolithic walls with no exterior windows to preserve sacred acoustics and thermal stability.",
-    materials: "Dense black Krishna granite (Karunkal), hand-honed to seamless precision.",
-    significance: "All temple geometry, alignments, and Ayadi ratios radiate outward from this singular focal point.",
+    name: "Garbhagriha (inner sanctum)",
+    role: "Inner shrine",
+    meaning: "The central shrine where the principal deity is placed.",
+    geometry: "Often a compact, enclosed space. The design follows the requirements of the temple and its tradition.",
+    materials: "Materials vary by site and design.",
+    significance: "The inner focus of worship in the temple.",
     hotspot: { x: "72%", y: "68%" }
   },
   {
     id: "mandapam",
-    name: "Mandapam (मण्डपम्)",
-    role: "Acoustic Pillared Assembly Pavilion",
-    meaning: "Hypostyle pillared hall designed for sacred gatherings, classical Carnatic music, Veda chanting, and dance rituals (Ardha-Mandapam, Maha-Mandapam, Kalyana-Mandapam).",
-    geometry: "Rectangular or square pillared hall with modular rhythmic spacing based on musical intervals and sacred proportional modules.",
-    materials: "Carved granite monolithic columns with monolithic cross-lintels and carved stone roof slabs.",
-    significance: "Transforms reverberating soundwaves into spiritual resonance through acoustic stone geometry.",
+    name: "Mandapam (hall)",
+    role: "Pillared hall",
+    meaning: "A covered space used for gathering, ceremonies or other temple activities.",
+    geometry: "May be square or rectangular, with the layout arranged around its intended use.",
+    materials: "Stone, wood and other materials may be used depending on the design.",
+    significance: "Provides space for people to gather within the temple.",
     hotspot: { x: "52%", y: "62%" }
   },
   {
     id: "prakaram",
-    name: "Prakaram (प्राकार)",
-    role: "Concentric Cloistered Courtyards",
-    meaning: "The multi-tiered concentric ambulatory corridors surrounding the central sanctum. Symbolizes the five protective sheaths (Pancha Koshas) enclosing the immortal human soul.",
-    geometry: "Concentric rectangular stone-paved walkways flanked by continuous covered colonnades.",
-    materials: "Paved granite slabs with peripheral stone drainage and rainwater harvesting catchments.",
-    significance: "Facilitates Pradakshina (sacred circumambulation), calming the mind step by step before reaching the sanctum.",
+    name: "Prakaram (courtyard path)",
+    role: "Courtyard or surrounding path",
+    meaning: "An open or covered area around temple spaces. Some temples include paths for walking around the shrine.",
+    geometry: "The layout follows the shape and arrangement of the temple site.",
+    materials: "Surfaces and finishes vary by site.",
+    significance: "Connects different areas and supports movement through the temple.",
     hotspot: { x: "42%", y: "82%" }
   },
   {
     id: "dhwajastambha",
-    name: "Dhwajastambha & Balipeetham (ध्वजस्तम्भ)",
-    role: "The Cosmic Flagstaff & Altar of Surrender",
-    meaning: "Represents the Sushumna Nadi (the central spine of spiritual energy) and the axis linking earth to the heavens. Devotees offer their ego before entering.",
-    geometry: "Monolithic granite core sheathed in consecrated brass or gold-leaf copper rings, aligned in an exact straight line with the deity.",
-    materials: "Solid seasoned teak or granite core encased in embossed repoussé bronze/gold.",
-    significance: "Acts as a spiritual lightning rod protecting the sanctum during cosmic events and lightning strikes.",
+    name: "Dhwajastambha (flagstaff)",
+    role: "Temple flagstaff",
+    meaning: "A flagstaff placed in some temples, often along the approach to the main shrine.",
+    geometry: "Its position and form depend on the temple layout and practice.",
+    materials: "Materials and coverings vary by temple.",
+    significance: "A recognisable feature in the approach to the shrine at some temples.",
     hotspot: { x: "36%", y: "58%" }
   }
 ];

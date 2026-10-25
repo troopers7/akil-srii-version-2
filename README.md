@@ -1,14 +1,14 @@
 # Akill-Sri
 
-Sri Akil — Temple Architecture & Sculptures studio website.
+Sri Akil — temple design, stonework and project-support website.
 
-A Vite-based single-page application showcasing South Indian temple architecture: project portfolio with search and filters, interactive temple anatomy explorer, 8-stage process timeline, heritage journal with article reader, and a six-step project planner that prepares a downloadable brief locally.
+A Vite-based single-page application with a searchable project gallery, interactive temple design guide, eight-step project overview, plain-language planning guides, contact options, and a six-step project planner.
 
 ## Tech Stack
 
 - Vite 5 (dev server & production builds)
 - Vanilla JavaScript ES modules (hash-based SPA routing)
-- Hand-written CSS with a sage green & bronze design system
+- Hand-written CSS with a terracotta and stone design system
 - Playwright browser tests (`tests/browser`)
 
 ## Getting Started
@@ -26,7 +26,9 @@ npm run preview  # preview the production build
 npx playwright test
 ```
 
-Tests cover all routes at multiple viewport widths, navigation, search, keyboard accessibility, and the full project planner flow.
+Tests cover all routes at multiple viewport widths, navigation, search, keyboard accessibility, contact hand-off, and the project planner flow.
+
+The contact form prepares an email or WhatsApp message for the visitor to send. The project planner can send its brief through the configured email service and offers WhatsApp hand-off links; see `src/utils/notify.js` for the service configuration and first-time activation steps.
 
 ## Automatic enquiry delivery (one-time setup)
 

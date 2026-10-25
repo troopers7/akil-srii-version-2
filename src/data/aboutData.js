@@ -1,73 +1,69 @@
 export const aboutData = {
   heritage: {
-    established: " 2000",
-    generations: "4 Generations of Hereditary Sthapathis",
-    headquarters: "Thanjavur & Chennai, India",
-    globalPresence: "London • Singapore • San Francisco",
-    headline: "Custodians of Sacred Geometry and Thousand-Year Stone",
-    story: "For nearly a century, Sri Akil has stood at the crossroads of eternal sacred tradition and contemporary architectural science. Founded in 1928 in the shadow of the Brihadeeswara Temple by Grandmaster Shilpi Vaidyanatha Sthapathi, our studio has erected over 42 monumental stone temples across India, Southeast Asia, Europe, and North America. We reject generic concrete temple construction; instead, we revive the heroic dry-granite interlocking masonry that enabled Chola and Dravidian sanctuaries to stand unyielding for over ten centuries.",
-    quote: "A temple is not merely a hall of worship. It is the physical manifestation of the cosmic being—the Viraat Purusha rendered in indestructible stone."
+    headline: "Temple design that starts by listening",
+    story: "Sri Akil works with people and communities planning a temple or caring for an existing one. We begin by understanding the place, the traditions that matter to you, the work you have in mind and the decisions you need help with. We then explain possible design and stonework options in clear steps, so you can decide what is right for your project.",
+    quote: "A temple is a place made for people, devotion and community. Its design should respect all three."
   },
   philosophy: [
     {
-      title: "Sacred Proportional Truth",
-      description: "We design strictly in adherence to the Mayamata, Manasara, and Kamika Agamas. Every sanctum module is derived from the Ayadi Shadvarga—ensuring mathematical resonance between the terrestrial structure and planetary frequencies."
+      title: "Listen first",
+      description: "We begin with your purpose, traditions, site and priorities. You do not need to know architectural terms before starting a conversation."
     },
     {
-      title: "The Thousand-Year Material Canon",
-      description: "We build primarily in crystalline black Krishna granite (Karunkal). We prohibit internal iron rebar inside stone cores, eliminating the concrete cancer and spalling that destroys modern structures within decades."
+      title: "Make choices clear",
+      description: "We explain the design, material and construction choices in plain language, and agree the scope with you before moving ahead."
     },
     {
-      title: "BIM Meets Ancient Shilpa Shastra",
-      description: "Our digital heritage computational lab creates 3D laser point-cloud scans and finite element structural simulations (FEA), marrying ancient Agama proportions with modern seismic safety standards."
+      title: "Respect craft and place",
+      description: "Traditional forms and stonework can give a temple its character. We discuss how they fit your site, needs and budget."
     }
   ],
   team: [
     {
-      name: "Dr. S. Ganapathi Acharya",
-      role: "Chief Sthapathi & Agama Shastra Chancellor",
-      credentials: "Padma Awardee Lineage • 46 Years Sacred Architecture Experience",
-      bio: "Revered globally as a supreme living authority on South Indian temple iconography and Vastu planning. Has consecrated 28 monumental sanctuaries across four continents."
+      name: "Temple design",
+      role: "Layout & architecture",
+      credentials: "From first sketch to design drawings",
+      bio: "Explore a site layout, the arrangement of spaces and the look and feel of the temple."
     },
     {
-      name: "Ar. Meera Sundaram, AIA",
-      role: "Principal Architect & Managing Director",
-      credentials: "B.Arch CEPT • M.Arch Harvard Graduate School of Design",
-      bio: "Bridging classical temple shastras with international contemporary master planning and advanced parametric modeling. Former lead at Foster + Partners heritage division."
+      name: "Traditional planning",
+      role: "Design preferences & guidance",
+      credentials: "Your customs and advisers are part of the conversation",
+      bio: "Share the practices and guidance that should inform the design. We will record what needs to be confirmed."
     },
     {
-      name: "Master Carver K. Balan Sthapathi",
-      role: "Guildmaster of Traditional Stone Craft",
-      credentials: "Hereditary Mahabalipuram Guildmaster • 32 Years Master Carving",
-      bio: "Oversees our 250+ hereditary stone carvers across our Thanjavur and Kanchipuram workshops, ensuring each monolithic column possesses hand-sculpted soul."
+      name: "Stonework & sculpture",
+      role: "Materials & detailing",
+      credentials: "Options discussed for each project",
+      bio: "Consider stone, carving and architectural details that suit the design and the work you have planned."
     },
     {
-      name: "Er. R. Ramanathan, M.Tech",
-      role: "Director of Heavy Civil & Foundation Engineering",
-      credentials: "Ph.D. Geotechnical Engineering, IIT Madras",
-      bio: "Specializes in deep bedrock anchoring, seismic isolation raft foundations, and heavy hydraulic crane lifting procedures for 50-tonne monolithic stone tiers."
+      name: "Project coordination",
+      role: "Clear next steps",
+      credentials: "Scope and responsibilities agreed together",
+      bio: "Understand which decisions, information and specialist input are needed as the project moves forward."
     }
   ],
   values: [
     {
       badge: "01",
-      title: "Vastu & Agama Integrity",
-      detail: "100% adherence to sacred astrological alignments, Ayadi dimensional formulas, and orthodox consecration rites without deviation."
+      title: "Respect your tradition",
+      detail: "Your customs, community and religious guidance belong in the conversation from the beginning."
     },
     {
       badge: "02",
-      title: "Millennial Longevity",
-      detail: "Engineered to withstand climatic extremes, earthquakes, and time itself using non-ferrous mortarless dry-stone interlocking methods."
+      title: "Explain the choices",
+      detail: "We aim to make plans, materials and next steps easier to understand before you make a decision."
     },
     {
       badge: "03",
-      title: "Artisanal Dignity & Guild Welfare",
-      detail: "Providing ethical living wages, healthcare, safe cutting-edge dust extraction studios, and generational apprenticeship to hereditary artisans."
+      title: "Plan for the place",
+      detail: "The site, intended use and agreed scope all help shape a practical design."
     },
     {
       badge: "04",
-      title: "Fiduciary Transparency",
-      detail: "Clear milestone billing, audited stone quarry origin certification, and photographic construction transparency for temple trusts worldwide."
+      title: "Agree the scope",
+      detail: "Responsibilities, deliverables and open questions should be clear before work begins."
     }
   ]
 };

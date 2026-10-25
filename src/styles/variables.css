@@ -1,52 +1,52 @@
 :root {
-  /* Color Palette - Light Sage & Bronze */
-  --bg: #FAF7EF; /* Background */
-  --primary: #657A5B; /* Sage Green (primary) */
-  --accent: #B08D57; /* Bronze accent */
-  --section-bg: #E9E6D8; /* Section background */
+  /* Color Palette - warm terracotta and stone */
+  --bg: #F5F5F7;
+  --primary: #A94319;
+  --accent: #C5852D;
+  --section-bg: #E9E7E3;
   --card-bg: rgba(255, 255, 255, 0.92);
   --card-bg-hover: rgba(255, 255, 255, 0.98);
 
-  --text-primary: #343A32; /* Main text */
-  --text-muted: #6b6b61;
-  --text-soft: #5a5f56;
-  --text-dim: #6b6b61;
+  --text-primary: #34363A;
+  --text-muted: #68686A;
+  --text-soft: #55575A;
+  --text-dim: #68686A;
 
   /* Compatibility tokens used by the existing page templates. */
   --bg-dark: var(--bg);
   --bg-surface: var(--section-bg);
   --bg-card: var(--card-bg);
   --bg-card-hover: var(--card-bg-hover);
-  --text-ivory: #FAF7EF;
+  --text-ivory: #F5F5F7;
   --text-ivory-soft: var(--text-soft);
-  --gold-primary: #806338;
-  --gold-bright: #806338;
-  --gold-border: rgba(176, 141, 87, 0.3);
-  --gold-border-hover: rgba(176, 141, 87, 0.6);
-  --primary-deep: #4D6144;
-  --header-height: 84px;
+  --gold-primary: #873819;
+  --gold-bright: #873819;
+  --gold-border: rgba(169, 67, 25, 0.3);
+  --gold-border-hover: rgba(169, 67, 25, 0.6);
+  --primary-deep: #873819;
+  --header-height: 122px;
 
   /* Bronze variables (replacing previous gold tokens) */
-  --bronze-primary: #B08D57;
-  --bronze-bright: #806338;
-  --bronze-pale: #EFE1C9;
-  --bronze-deep: #8B6B3F;
-  --bronze-border: rgba(176, 141, 87, 0.22);
-  --bronze-border-hover: rgba(176, 141, 87, 0.55);
-  --bronze-glow: rgba(176, 141, 87, 0.12);
-  --bronze-gradient: linear-gradient(135deg, #B08D57 0%, #D3B285 50%, #8B6B3F 100%);
-  --bronze-text-gradient: linear-gradient(135deg, #343A32 0%, #B08D57 60%, #8B6B3F 100%);
+  --bronze-primary: #A94319;
+  --bronze-bright: #873819;
+  --bronze-pale: #F0DCCB;
+  --bronze-deep: #8F3B1B;
+  --bronze-border: rgba(169, 67, 25, 0.22);
+  --bronze-border-hover: rgba(169, 67, 25, 0.55);
+  --bronze-glow: rgba(169, 67, 25, 0.12);
+  --bronze-gradient: linear-gradient(135deg, #A94319 0%, #D28A40 50%, #873819 100%);
+  --bronze-text-gradient: linear-gradient(135deg, #34363A 0%, #A94319 60%, #873819 100%);
 
-  --neutral-1: #CFC9BF;
-  --neutral-2: #BFB8AA;
+  --neutral-1: #D3D0CC;
+  --neutral-2: #BBB8B4;
 
-  --border-subtle: rgba(52, 58, 50, 0.06);
-  --border-glass: rgba(52, 58, 50, 0.04);
+  --border-subtle: rgba(52, 54, 58, 0.08);
+  --border-glass: rgba(52, 54, 58, 0.04);
 
   /* Typography */
-  --font-serif: 'Cinzel', 'Playfair Display', Georgia, serif;
-  --font-editorial: 'Cormorant Garamond', Georgia, serif;
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Plus Jakarta Sans', Arial, sans-serif;
+  --font-editorial: Georgia, 'Times New Roman', serif;
+  --font-sans: 'Plus Jakarta Sans', Arial, sans-serif;
 
   /* 8px Spacing System */
   --space-1: 8px;

@@ -44,6 +44,18 @@ test('search retains focus; case study survives reload and browser back', async 
   await expect(search).toBeVisible();
 });
 
+test('home highlights switch images and keep the selected pagination state', async ({ page }) => {
+  await page.goto('/#home');
+  const image = page.locator('#home-slider-image');
+  await expect(image).toHaveAttribute('src', '/assets/hero_temple.jpg');
+  await page.getByRole('button', { name: 'Next highlight' }).click();
+  await expect(image).toHaveAttribute('src', '/assets/gopuram_monolith.jpg');
+  await expect(page.locator('.home-slider-dot').nth(1)).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('button', { name: 'Show highlight 3' }).click();
+  await expect(image).toHaveAttribute('src', '/assets/mandapam_hall.jpg');
+  await expect(page.locator('main h1')).toContainText('Architecture that');
+});
+
 test('mobile menu and article dialog support keyboard dismissal and focus return', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/#home');
@@ -91,17 +103,18 @@ for (const width of [390, 1440]) {
     await expect(page.locator('#wizard-form')).not.toContainText('Agama Master Planning Only');
     const next = () => page.locator('#wizard-form button[type="submit"]').click();
     await next();
-    await next();
-    await expect(page.locator('#wizard-error')).toContainText('land dimensions');
-    await expect(page.locator('select#wizard-location')).toHaveCount(0);
+    await expect(page.locator('#wizard-location')).toBeVisible();
     await page.locator('#wizard-location').fill('Thanjavur, Tamil Nadu');
     await page.locator('#wizard-acreage').fill('3 acres');
-    await page.locator('#wizard-prev').click();
     await next();
+    await expect(page.locator('select#wizard-location')).toHaveCount(0);
+    await page.locator('#wizard-prev').click();
     await expect(page.locator('#wizard-acreage')).toHaveValue('3 acres');
+    await next();
     await page.evaluate(() => { location.hash = 'about'; });
     await expect(page.locator('.about-hero-grid')).toBeVisible();
     await page.evaluate(() => { location.hash = 'start-project'; });
+    await page.locator('#wizard-prev').click();
     await expect(page.locator('#wizard-acreage')).toHaveValue('3 acres');
     await next();
     await expect(page.locator('select#wizard-style')).toHaveCount(0);
@@ -146,8 +159,8 @@ for (const width of [390, 1440]) {
     expect(payload._cc).toBe('gayathriakilan17@gmail.com');
     expect(payload._subject).toContain('New project enquiry');
     expect(payload._replyto).toBe('akil@example.com');
-    expect(payload.Region).toBe('Thanjavur, Tamil Nadu');
-    expect(payload['Land / plot dimensions']).toBe('3 acres');
+    expect(payload['Project location']).toBe('Thanjavur, Tamil Nadu');
+    expect(payload['Approximate site size']).toBe('3 acres');
     expect(payload['Full brief']).toContain('Courtyard & carved lotus details.');
     expect(payload['Full brief']).toContain('Submitted to the studio desk by email and WhatsApp.');
     // WhatsApp depends on the one-time callmebot apikeys; the manual link always stays available.
@@ -172,7 +185,7 @@ for (const width of [390, 1440]) {
       await expect.poll(() => popups[0].url()).toContain('wa.me/');
       const chat = new URL(popups[0].url()).searchParams.get('text');
       expect(chat).toContain('*New Enquiry — Sri Akil*');
-      expect(chat).toContain('*Land / plot dimensions:* 3 acres');
+      expect(chat).toContain('*Approximate site size:* 3 acres');
       expect(chat).toContain('*Patron name:* Akil Kumar');
     }
     await expect(page).toHaveURL(/start-project/);
@@ -190,7 +203,7 @@ for (const width of [390, 1440]) {
     await expect(page.locator('#brief-reference')).toContainText(/SRI-\d{8}-\d{4}/);
     page.on('dialog', dialog => dialog.accept());
     await page.locator('#reset-brief').click();
-    await expect(page.locator('.wizard-step-node[aria-current="step"]')).toContainText('Category');
+    await expect(page.locator('.wizard-step-node[aria-current="step"]')).toContainText('Project');
     await next();
     await expect(page.locator('#wizard-location')).toHaveValue('');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -211,9 +224,9 @@ test('anatomy and process selection preserve keyboard focus', async ({ page }) =
   await expect(stage).toHaveAttribute('aria-pressed', 'true');
 });
 
-test('contact page validates inputs and submits inquiry', async ({ page }) => {
+test('contact page validates inputs and prepares an inquiry hand-off', async ({ page }) => {
   await page.goto('/#contact');
-  await expect(page.locator('main h1')).toHaveText(/Connect with Our Master Architects/);
+  await expect(page.locator('main h1')).toHaveText('Tell us what you are planning');
   await page.locator('#btn-submit-contact').click();
   await expect(page.locator('#contact-feedback')).toBeVisible();
   await expect(page.locator('#contact-feedback')).toHaveClass(/error/);
@@ -225,6 +238,11 @@ test('contact page validates inputs and submits inquiry', async ({ page }) => {
   await page.locator('#btn-submit-contact').click();
 
   await expect(page.locator('#contact-feedback')).toBeVisible();
-  await expect(page.locator('#contact-feedback')).toHaveClass(/success/);
-  await expect(page.locator('#contact-feedback')).toContainText('AKIL-INQ-');
+  await expect(page.locator('#contact-feedback')).toHaveClass(/prepared/);
+  await expect(page.locator('#contact-feedback')).toContainText('This page has not sent your message');
+  await expect(page.locator('#contact-feedback a[href^="mailto:"]')).toBeVisible();
+  await expect(page.locator('#contact-feedback a[href^="https://wa.me/"]')).toBeVisible();
+  const emailLink = await page.locator('#contact-feedback a[href^="mailto:"]').getAttribute('href');
+  expect(decodeURIComponent(emailLink)).toContain('Sundar Raman');
+  expect(decodeURIComponent(emailLink)).toContain('Seeking Agama advisory');
 });

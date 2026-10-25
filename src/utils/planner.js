@@ -25,14 +25,8 @@ export function validateReferenceFile(file) {
 
 export function validateWizard(wizard, step = wizard.currentStep) {
   if (step === 1 && !wizard.category) return 'Please choose a project category.';
-  if (step === 2 && (!wizard.location || !wizard.acreage.trim())) {
-    return 'Please enter your region and available land dimensions.';
-  }
-  if (step === 3 && (!wizard.style || !wizard.deity.trim())) {
-    return 'Please enter an architectural tradition and presiding deity.';
-  }
   if (step === 4 && (!wizard.footprint || !wizard.stone)) {
-    return 'Please choose a footprint and stone medium.';
+    return 'Please choose an approximate size and material preference.';
   }
   if (step === 5 && !wizard.services.length) return 'Select at least one service to continue.';
   if (step === 6) {
@@ -49,12 +43,12 @@ export function validateWizard(wizard, step = wizard.currentStep) {
 export function briefEntries(wizard) {
   return [
     ['Project category', wizard.category],
-    ['Region', wizard.location],
-    ['Land / plot dimensions', wizard.acreage],
-    ['Architectural tradition', wizard.style],
-    ['Presiding deity', wizard.deity],
-    ['Built footprint', wizard.footprint],
-    ['Stone medium', wizard.stone],
+    ['Project location', wizard.location || 'To be decided'],
+    ['Approximate site size', wizard.acreage || 'To be decided'],
+    ['Style or tradition', wizard.style || 'To be decided'],
+    ['Deity or key feature', wizard.deity || 'To be decided'],
+    ['Approximate built size', wizard.footprint],
+    ['Material preference', wizard.stone],
     ['Services', wizard.services.join('\n')],
     ['Patron name', wizard.patronName],
     ['Trust / foundation', wizard.trustName || 'Not specified'],
