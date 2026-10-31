@@ -7,6 +7,17 @@ import { insightsData } from './data/insightsData.js';
 import { sacredAudio } from './utils/audio.js';
 import { escapeHtml, filterProjects } from './utils/planner.js';
 import { createWizard } from './utils/wizard.js';
+import {
+  initHdLightboxViewer,
+  renderRunningProjectsHtml,
+  renderHomeInvitationsBanner,
+  renderHomeGalleryPreview,
+  renderProjectsInvitationsPage,
+  renderTempleGalleryPage,
+  renderRunningProjectsPage,
+  renderGloryOfArchitecturePage,
+  renderScienceOfArchitecturePage
+} from './pages/sompuraPages.js';
 
 // State Management
 const state = {
@@ -16,6 +27,9 @@ const state = {
   selectedProcessStep: '01',
   projectFilter: 'all',
   searchQuery: '',
+  invitationSearchQuery: '',
+  galleryCategory: 'all',
+  gallerySearchQuery: '',
 };
 
 // Routing & View Controller
@@ -115,9 +129,20 @@ function updateScrollUI() {
 window.addEventListener('scroll', updateScrollUI, { passive: true });
 
 const pageNames = {
-  home: 'Temple Design & Stonework', projects: 'Projects', 'project-detail': 'Project details',
-  services: 'Services', 'temple-design': 'Temple design guide', about: 'About Sri Akil',
-  process: 'How it works', insights: 'Planning guides', 'start-project': 'Project planner',
+  home: 'Temple Design & Stonework',
+  projects: 'Projects',
+  'project-detail': 'Project details',
+  'running-projects': 'Running & Ongoing Projects',
+  'projects-invitations': 'Our Projects — Invitations',
+  'temple-gallery': 'Temple Architecture Gallery',
+  'glory-of-architecture': 'Glory of Temple Architecture',
+  'science-of-architecture': 'Science of Temple Architecture (Vastu)',
+  services: 'Services',
+  'temple-design': 'Temple design guide',
+  about: 'About Sri Akil',
+  process: 'How it works',
+  insights: 'Planning guides',
+  'start-project': 'Project planner',
   contact: 'Contact Us'
 };
 
@@ -177,6 +202,10 @@ function initButtonAnimations() {
 }
 
 function handleRoute() {
+  if (window.__heroSlideTimer) {
+    clearInterval(window.__heroSlideTimer);
+    window.__heroSlideTimer = null;
+  }
   projectWizard.save();
   const [page, query = ''] = window.location.hash.slice(1).split('?');
   state.activePage = Object.hasOwn(pageNames, page) ? page : 'home';
@@ -187,11 +216,20 @@ function handleRoute() {
   }
   setMenu(false);
   closeArticle(false);
-  navLinks.forEach(link => {
-    const active = link.dataset.page === state.activePage;
+
+  const allNavLinks = document.querySelectorAll('.nav-link, .mobile-nav-link, .nav-dropdown-item a');
+  allNavLinks.forEach(link => {
+    const linkPage = link.dataset.page || (link.getAttribute('href') || '').replace(/^#/, '').split('?')[0];
+    const active = linkPage === state.activePage;
     link.classList.toggle('active', active);
     if (active) link.setAttribute('aria-current', 'page');
     else link.removeAttribute('aria-current');
+  });
+
+  document.querySelectorAll('.nav-dropdown-wrapper').forEach(wrapper => {
+    const hasActiveChild = wrapper.querySelector('.nav-dropdown-item a.active');
+    const trigger = wrapper.querySelector('.nav-dropdown-trigger');
+    if (trigger) trigger.classList.toggle('active', Boolean(hasActiveChild));
   });
 
   const doRender = () => {
@@ -244,6 +282,21 @@ function renderCurrentPage() {
       break;
     case 'project-detail':
       renderProjectDetailPage();
+      break;
+    case 'running-projects':
+      renderRunningProjectsPage(appView);
+      break;
+    case 'projects-invitations':
+      renderProjectsInvitationsPage(appView, state);
+      break;
+    case 'temple-gallery':
+      renderTempleGalleryPage(appView, state);
+      break;
+    case 'glory-of-architecture':
+      renderGloryOfArchitecturePage(appView);
+      break;
+    case 'science-of-architecture':
+      renderScienceOfArchitecturePage(appView);
       break;
     case 'services':
       renderServicesPage();
@@ -367,6 +420,15 @@ function renderHomePage() {
         </div>
       </div>
     </div>
+
+    <!-- Running & Consecrated Projects Grid (Rajesh Sompura Showcase) -->
+    ${renderRunningProjectsHtml()}
+
+    <!-- Our Projects — Invitations Preview (HD Clear Consecration Patrika) -->
+    ${renderHomeInvitationsBanner()}
+
+    <!-- Master Temple Architecture Gallery Preview Strip (99 Authentic Photos) -->
+    ${renderHomeGalleryPreview()}
 
     <!-- Sacred Philosophy & Vastu Geometry -->
     <section class="philosophy-section section-spacing">
@@ -524,6 +586,7 @@ function renderHomePage() {
     activeHeroSlide = (index + heroSlides.length) % heroSlides.length;
     const slide = heroSlides[activeHeroSlide];
     const image = document.getElementById('home-slider-image');
+    if (!image) return;
     image.src = slide.image;
     image.alt = slide.alt;
     document.getElementById('home-slider-eyebrow').textContent = slide.eyebrow;
@@ -535,12 +598,28 @@ function renderHomePage() {
       dot.setAttribute('aria-pressed', String(selected));
     });
   };
+
+  const startHeroTimer = () => {
+    if (window.__heroSlideTimer) clearInterval(window.__heroSlideTimer);
+    window.__heroSlideTimer = setInterval(() => {
+      updateHeroSlide(activeHeroSlide + 1);
+    }, 6000);
+  };
+
   appView.querySelectorAll('[data-hero-slide]').forEach(button => {
-    button.addEventListener('click', () => updateHeroSlide(Number(button.dataset.heroSlide)));
+    button.addEventListener('click', () => {
+      updateHeroSlide(Number(button.dataset.heroSlide));
+      startHeroTimer();
+    });
   });
   appView.querySelectorAll('[data-hero-direction]').forEach(button => {
-    button.addEventListener('click', () => updateHeroSlide(activeHeroSlide + Number(button.dataset.heroDirection)));
+    button.addEventListener('click', () => {
+      updateHeroSlide(activeHeroSlide + Number(button.dataset.heroDirection));
+      startHeroTimer();
+    });
   });
+
+  startHeroTimer();
 
   // Attach event listener for featured project button
   const btnSpotlight = document.getElementById('btn-view-spotlight-case');
@@ -1376,30 +1455,50 @@ function renderContactPage() {
             </form>
           </div>
 
-          <!-- Direct contact details -->
+          <!-- Direct contact details: Akilan Sthapathy & Maneesha B.Arch (Architect) -->
           <div class="contact-studios-panel">
-            <div class="contact-studio-card">
+            <div class="contact-studio-card" style="border-left: 3px solid var(--gold-primary);">
               <div class="studio-card-header">
-                <span class="studio-card-city">Call or WhatsApp</span>
-                <span class="studio-card-tag">Direct contact</span>
+                <span class="studio-card-city">Akilan Sthapathy</span>
+                <span class="studio-card-tag" style="background: rgba(197, 133, 45, 0.2); color: #f0b46d;">Master Sthapathi</span>
               </div>
+              <p style="font-size: 0.84rem; color: var(--text-ivory-soft); margin-bottom: 12px; line-height: 1.5;">
+                Hereditary Dravidian sthapathi guidance, Shilpa Shastra calculations, monolithic granite stone selection, Rajagopuram construction, and Maha Kumbabishekam consecration.
+              </p>
               <div class="studio-contact-links">
-                <a href="tel:+919790224561">+91 97902 24561</a>
-                <a href="tel:+919940295932">+91 99402 95932</a>
+                <a href="tel:+919790224561">📞 +91 97902 24561</a>
+                <a href="https://wa.me/919790224561" target="_blank" rel="noopener noreferrer" style="color: #25D366; font-weight: 600;">
+                  💬 WhatsApp Akilan Sthapathy
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-studio-card" style="border-left: 3px solid #a94319;">
+              <div class="studio-card-header">
+                <span class="studio-card-city">Maneesha B.Arch</span>
+                <span class="studio-card-tag" style="background: rgba(169, 67, 25, 0.2); color: #f28b66;">Architect</span>
+              </div>
+              <p style="font-size: 0.84rem; color: var(--text-ivory-soft); margin-bottom: 12px; line-height: 1.5;">
+                Architectural blueprints, site layout planning, structural integration with sthapathi dimensions, 2D/3D temple visualization, and project coordination.
+              </p>
+              <div class="studio-contact-links">
+                <a href="tel:+919940295932">📞 +91 99402 95932</a>
+                <a href="https://wa.me/919940295932" target="_blank" rel="noopener noreferrer" style="color: #25D366; font-weight: 600;">
+                  💬 WhatsApp Maneesha (Architect)
+                </a>
               </div>
             </div>
 
             <div class="contact-studio-card">
               <div class="studio-card-header">
-                <span class="studio-card-city">Email the studio</span>
-                <span class="studio-card-tag">Project enquiries</span>
+                <span class="studio-card-city">Studio & Email Desk</span>
+                <span class="studio-card-tag">Project Enquiries</span>
               </div>
               <div class="studio-contact-links">
                 <a href="mailto:akilanmaneesha@gmail.com">akilanmaneesha@gmail.com</a>
                 <a href="mailto:gayathriakilan17@gmail.com">gayathriakilan17@gmail.com</a>
               </div>
             </div>
-
           </div>
         </div>
 
@@ -1482,4 +1581,29 @@ function renderContactPage() {
       feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
   }
+}
+
+// Initialize Sompura HD Lightbox Viewer (Zoom, Rotate, Pan & Download)
+initHdLightboxViewer();
+
+// Global Topbar Search Input Handler
+const globalSearchInput = document.getElementById('global-search-input');
+if (globalSearchInput) {
+  globalSearchInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      const q = globalSearchInput.value.trim();
+      if (q) {
+        state.searchQuery = q;
+        state.gallerySearchQuery = q;
+        state.invitationSearchQuery = q;
+        if (state.activePage === 'temple-gallery') {
+          renderTempleGalleryPage(appView, state);
+        } else if (state.activePage === 'projects-invitations') {
+          renderProjectsInvitationsPage(appView, state);
+        } else {
+          window.location.hash = '#temple-gallery';
+        }
+      }
+    }
+  });
 }

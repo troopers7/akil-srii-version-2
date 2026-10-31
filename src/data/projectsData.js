@@ -58,7 +58,7 @@ export const projectsData = [
     footprint: "Rajagopuram Precinct",
     vimanaHeight: "75 Feet",
     masterSthapathi: "Ar. S. Ganapathi Acharya",
-    image: "/assets/gopuram_monolith.jpg",
+    image: "/assets/temple_gallery/temple_002.jpg",
     tags: ["Rajagopuram", "75 Feet", "2010-2011"],
     stats: {
       graniteWeight: "Rajagopuram Stone Work",
@@ -98,15 +98,15 @@ export const projectsData = [
     title: "Kolangonda Maari Amman Temple",
     subtitle: "Stone Work - Gopuram Temple - Ongoing",
     category: "chola",
-    location: "Kolangonda",
+    location: "Kolangonda, Tamil Nadu",
     year: "2025 - 2026",
     status: "Ongoing",
     stoneType: "Granite Stone Work",
     footprint: "Gopuram Temple Complex",
     vimanaHeight: "Gopuram Temple",
     masterSthapathi: "Master Carver K. Balan Sthapathi",
-    image: "/assets/mandapam_hall.jpg",
-    tags: ["Stone Work", "Gopuram Temple", "2025-2026"],
+    image: "/assets/temple_gallery/temple_012.jpg",
+    tags: ["Stone Work", "Gopuram Temple", "2025-2026", "Ongoing"],
     stats: {
       graniteWeight: "Gopuram Stone Work",
       carvingHours: "2025-2026 Work",
@@ -152,8 +152,8 @@ export const projectsData = [
     footprint: "Amman Temple Complex",
     vimanaHeight: "Stone Temple",
     masterSthapathi: "Dr. Ar. Meera Sundaram (Conservation Lead)",
-    image: "/assets/stone_detail.jpg",
-    tags: ["Stone Work", "2025-26", "Amman Temple"],
+    image: "/assets/temple_gallery/temple_019.jpg",
+    tags: ["Stone Work", "2025-26", "Amman Temple", "Ongoing"],
     stats: {
       graniteWeight: "Amman Temple Stone Work",
       carvingHours: "2025-2026 Work",
@@ -199,7 +199,7 @@ export const projectsData = [
     footprint: "Perumal Temple Complex",
     vimanaHeight: "Temple Complex",
     masterSthapathi: "Ar. S. Ganapathi Acharya",
-    image: "/assets/hero_temple.jpg",
+    image: "/assets/temple_gallery/temple_025.jpg",
     tags: ["Perumal Temple", "OMR Chennai", "Ongoing"],
     stats: {
       graniteWeight: "Perumal Temple Stone Work",
@@ -246,7 +246,7 @@ export const projectsData = [
     footprint: "Rajagopuram Temple Complex",
     vimanaHeight: "Rajagopuram",
     masterSthapathi: "Master Carver K. Balan Sthapathi",
-    image: "/assets/temple_blueprint.jpg",
+    image: "/assets/temple_gallery/temple_030.jpg",
     tags: ["Vinagar Temple", "Rajagopuram", "Ongoing"],
     stats: {
       graniteWeight: "Rajagopuram Stone Work",
@@ -278,6 +278,54 @@ export const projectsData = [
       completed: {
         title: "06 / Consecration & Completed Sanctuary",
         text: "Ongoing Rajagopuram work progressing towards completion and consecration."
+      }
+    }
+  },
+  {
+    id: "arulmigu-muthukumaran-swamy-temple",
+    title: "Arulmigu Sri Muthukumaran Swamy Temple",
+    subtitle: "Maha Kumbabishekam Consecration & Stone Sanctum",
+    category: "chola",
+    location: "Tamil Nadu",
+    year: "Consecrated",
+    status: "Completed",
+    stoneType: "Granite Sanctum, Vimana & Vahanas",
+    footprint: "Murugan Temple Sanctum & Prakaram",
+    vimanaHeight: "Sacred Vimana & Rajagopuram",
+    masterSthapathi: "Sri Akil Hereditary Sthapathi Guild",
+    image: "/assets/temple_gallery/temple_035.jpg",
+    invitationImage: "/assets/invitations/invitation_01.jpg",
+    tags: ["Murugan Temple", "Maha Kumbabishekam", "Invitations Archive", "Completed"],
+    stats: {
+      graniteWeight: "Stone Sanctum & Pillars",
+      carvingHours: "Consecration Work",
+      jointPrecision: "Traditional Sthapathi Joinery",
+      alignment: "Tamil Nadu"
+    },
+    chapters: {
+      vision: {
+        title: "01 / Patron Vision & Sacred Intent",
+        text: "Arulmigu Sri Muthukumaran Swamy Temple constructed and consecrated with traditional Maha Kumbabishekam ceremonies, honoured by thousands of devotees and sacred sthapathi traditions."
+      },
+      concept: {
+        title: "02 / Vastu Purusha Mandala & Ayadi Ratios",
+        text: "Sanctum oriented to the sacred auspicious coordinates for Lord Murugan, with dedicated sub-shrines and circumambulatory path."
+      },
+      design: {
+        title: "03 / Architectural Blueprint & 3D Drafting",
+        text: "Complete granite foundation, stone adhisthana, ornate pilasters, and sacred vimana superstructure."
+      },
+      craft: {
+        title: "04 / Master Sthapathi Hand-Carving",
+        text: "Sculpting of presiding deity peedam, dwarapalakas, mayil vahana, and ornamental friezes according to Shilpa Shastras."
+      },
+      execution: {
+        title: "05 / Structural Engineering & Precision Assembly",
+        text: "Engineered stone joinery without mortar binding, ensuring structural longevity for centuries."
+      },
+      completed: {
+        title: "06 / Consecration & Completed Sanctuary",
+        text: "Sacred Maha Kumbabishekam performed with Yagasalai homams, holy water abhishekam on vimana kalasams, documented in our Consecration Invitations archive."
       }
     }
   }

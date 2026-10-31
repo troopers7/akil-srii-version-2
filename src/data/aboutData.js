@@ -20,28 +20,28 @@ export const aboutData = {
   ],
   team: [
     {
-      name: "Temple design",
-      role: "Layout & architecture",
-      credentials: "From first sketch to design drawings",
-      bio: "Explore a site layout, the arrangement of spaces and the look and feel of the temple."
+      name: "Akilan Sthapathy",
+      role: "Master Sthapathi",
+      credentials: "Hereditary Shilpa Shastra & Temple Stone Craft",
+      bio: "Leads traditional Vastu Purusha Mandala planning, Ayadi Ganitam proportions, monolithic granite selection, and sacred temple consecration."
     },
     {
-      name: "Traditional planning",
-      role: "Design preferences & guidance",
-      credentials: "Your customs and advisers are part of the conversation",
-      bio: "Share the practices and guidance that should inform the design. We will record what needs to be confirmed."
+      name: "Maneesha B.Arch",
+      role: "Architect",
+      credentials: "Bachelor of Architecture (B.Arch)",
+      bio: "Specializes in temple architectural design, structural integration with sthapathi shastras, 2D/3D working drawings, and project coordination."
     },
     {
-      name: "Stonework & sculpture",
-      role: "Materials & detailing",
-      credentials: "Options discussed for each project",
-      bio: "Consider stone, carving and architectural details that suit the design and the work you have planned."
+      name: "Traditional Stonework Guild",
+      role: "Hereditary Master Artisans",
+      credentials: "Generations of monolithic Dravidian stonework",
+      bio: "Master craftsmen hand-carving Rajagopurams, Garbhagriha Vimanas, and pillared Kalyana Mandapams."
     },
     {
-      name: "Project coordination",
-      role: "Clear next steps",
-      credentials: "Scope and responsibilities agreed together",
-      bio: "Understand which decisions, information and specialist input are needed as the project moves forward."
+      name: "Project Coordination Desk",
+      role: "Patron Guidance & Planning",
+      credentials: "Trusted temple trust coordination across South India",
+      bio: "Ensures seamless execution between trustees, sthapatis, donors, and Agama priests from concept to Kumbabishekam."
     }
   ],
   values: [
