@@ -1,128 +1,69 @@
 export const aboutData = {
   heritage: {
-    established: " 2000",
-    generations: "4 Generations of Hereditary Sthapathis",
-    headquarters: "Karaikudi & Chennai, India",
-    globalPresence: "London • Singapore • San Francisco",
-    headline: "Custodians of Sacred Geometry and Thousand-Year Stone",
-    story: "Sri Akil is led by R. Akilan Sthapathy and Ar. Maneesha B.Arch, blending sacred geometry, traditional cement work, and contemporary planning. Our studio specializes in sanctuaries, heritage restoration, and divine sculptural work rooted in Agama and Dravidian tradition.",
-    quote: "A temple is not merely a hall of worship. It is the physical manifestation of the cosmic being—the Viraat Purusha rendered in indestructible stone."
+    headline: "Temple design that starts by listening",
+    story: "Sri Akil works with people and communities planning a temple or caring for an existing one. We begin by understanding the place, the traditions that matter to you, the work you have in mind and the decisions you need help with. We then explain possible design and stonework options in clear steps, so you can decide what is right for your project.",
+    quote: "A temple is a place made for people, devotion and community. Its design should respect all three."
   },
   philosophy: [
     {
-      title: "Sacred Proportional Truth",
-      description: "We design strictly in adherence to the Mayamata, Manasara, and Kamika Agamas. Every sanctum module is derived from the Ayadi Shadvarga—ensuring mathematical resonance between the terrestrial structure and planetary frequencies."
+      title: "Listen first",
+      description: "We begin with your purpose, traditions, site and priorities. You do not need to know architectural terms before starting a conversation."
     },
     {
-      title: "The Thousand-Year Material Canon",
-      description: "We build with sacred stone and specialized traditional cement work. We prohibit internal iron rebar inside stone cores, eliminating the concrete cancer and spalling that destroys modern structures within decades."
+      title: "Make choices clear",
+      description: "We explain the design, material and construction choices in plain language, and agree the scope with you before moving ahead."
     },
     {
-      title: "BIM Meets Ancient Shilpa Shastra",
-      description: "Our digital heritage computational lab creates 3D laser point-cloud scans and finite element structural simulations (FEA), marrying ancient Agama proportions with modern seismic safety standards."
+      title: "Respect craft and place",
+      description: "Traditional forms and stonework can give a temple its character. We discuss how they fit your site, needs and budget."
     }
   ],
   team: [
     {
-      name: "R. Akilan Sthapathy",
-      role: "Principal Sthapathi & Guild Master",
-      credentials: "Hereditary Temple Architect • Master Shilpi & Agama Shastra Director",
-      bio: "Leading the architectural practice with four generations of hereditary temple craftsmanship. Specializes in monumental temple Vimanas, traditional cement work, sacred Ayadi proportions, sanctum consecrations, and handcrafted temple iconographies.",
-      image: "/assets/akilan_sthapathy_portrait.jpg"
+      name: "Akilan Sthapathy",
+      role: "Master Sthapathi",
+      credentials: "Hereditary Shilpa Shastra & Temple Stone Craft",
+      bio: "Leads traditional Vastu Purusha Mandala planning, Ayadi Ganitam proportions, monolithic granite selection, and sacred temple consecration."
     },
     {
-      name: "Ar. Maneesha B.Arch",
-      role: "Principal Architect & Design Director",
-      credentials: "Registered Architect (B.Arch) • Dravidian Architectural Design & Sacred Geometry Lead",
-      bio: "Spearheading architectural blueprints, 3D visualization, Vastu Purusha spatial planning, and structural integration. Unites classical Agama shastra proportions with contemporary building standards and traditional cement work.",
-      image: "/assets/temple_blueprint.jpg"
-    }
-  ],
-  worksArchive: [
-    {
-      id: "kalasam-consecration",
-      title: "Sacred Golden Kalasam Consecration",
-      category: "Maha Kumbhabhishekam",
-      image: "/assets/work_kalasam_ceremony.jpg",
-      caption: "Sthapathy R. Akilan presiding over the ceremonial installation and consecrated abhishekam of the sacred Gopura Golden Kalasam alongside traditional guild artisans."
+      name: "Maneesha B.Arch",
+      role: "Architect",
+      credentials: "Bachelor of Architecture (B.Arch)",
+      bio: "Specializes in temple architectural design, structural integration with sthapathi shastras, 2D/3D working drawings, and project coordination."
     },
     {
-      id: "hanuman-monolith",
-      title: "Monolithic Krishna Shila Sri Hanuman Installation",
-      category: "Monolithic Stonecraft",
-      image: "/assets/work_hanuman_monolith.png",
-      caption: "Sthapathy R. Akilan offering pranams at the newly installed monolithic Sri Hanuman deity and traditional cement artistry, sculpted with refined padmapitha lotus base to Agama Shastras."
+      name: "Traditional Stonework Guild",
+      role: "Hereditary Master Artisans",
+      credentials: "Generations of monolithic Dravidian stonework",
+      bio: "Master craftsmen hand-carving Rajagopurams, Garbhagriha Vimanas, and pillared Kalyana Mandapams."
     },
     {
-      id: "vimana-tower",
-      title: "Polychrome Dravidian Vimana Superstructure Completion",
-      category: "Vimana Architecture",
-      image: "/assets/work_vimana_tower.jpg",
-      caption: "Sthapathy R. Akilan before the consecrated multi-tiered Dravidian Vimana tower, adorned with Somaskanda and divine celestial shilpa stucco embellishments."
-    },
-    {
-      id: "divine-sculpture",
-      title: "Divine Shiva & Parvati (Soma Skanda) Iconography",
-      category: "Agama Shilpa Craft",
-      image: "/assets/work_divine_sculpture.png",
-      caption: "Exquisite hand-sculpted polychrome stone and stucco divine couple deities, sculpted to canonical Silparatna canons with traditional mudras and sacred ornamentation."
-    },
-    {
-      id: "sanctum-guild-construction",
-      title: "Sanctum Sanctorum (Garbhagriha) Guild Stone Masonry",
-      category: "Heritage Construction",
-      image: "/assets/work_sanctum_guild_construction.jpg",
-      caption: "Sthapathy R. Akilan and guild artisans at the consecrated Garbhagriha doorway under active construction with sacred sanctum doorframe, traditional cement work and scaffolding."
-    },
-    {
-      id: "consecration-award",
-      title: "Sacred Consecration Guild Honor & Memento Presentation",
-      category: "Guild Recognition",
-      image: "/assets/work_consecration_award.jpg",
-      caption: "Temple trustees and head Vedic priests honoring Sthapathy R. Akilan with the ceremonial golden memento plaque during the temple Kumbhabhishekam."
-    },
-    {
-      id: "bhumi-pooja",
-      title: "Auspicious Bhumi Pooja & Foundation Consecration",
-      category: "Foundation Consecration",
-      image: "/assets/work_bhumi_pooja_foundation.jpg",
-      caption: "Sthapathy R. Akilan joining village elders, trustees and Vedic priests during the auspicious preliminary Bhumi Pooja offering for new temple construction."
-    },
-    {
-      id: "sanctum-consecration",
-      title: "Garbhagriha Sthapana & Temple Trust Felicitation",
-      category: "Sanctum Consecration",
-      image: "/assets/work_sanctum_consecration.jpg",
-      caption: "Temple trustees, dignitaries, and chief Vedic priests presenting the sacred Poorna Kumbham and floral honours to Sthapathy R. Akilan at the completed sanctum entrance."
-    },
-    {
-      id: "gopuram-scaffolding",
-      title: "Monumental Raja Gopuram Construction & Inspection",
-      category: "Vimana & Tower Engineering",
-      image: "/assets/work_gopuram_scaffolding.png",
-      caption: "Guiding patrons, trust officials, and dignitaries atop the high Raja Gopuram scaffolding during pinnacle superstructure alignment and final kalasam preparation."
+      name: "Project Coordination Desk",
+      role: "Patron Guidance & Planning",
+      credentials: "Trusted temple trust coordination across South India",
+      bio: "Ensures seamless execution between trustees, sthapatis, donors, and Agama priests from concept to Kumbabishekam."
     }
   ],
   values: [
     {
       badge: "01",
-      title: "Vastu & Agama Integrity",
-      detail: "100% adherence to sacred astrological alignments, Ayadi dimensional formulas, and orthodox consecration rites without deviation."
+      title: "Respect your tradition",
+      detail: "Your customs, community and religious guidance belong in the conversation from the beginning."
     },
     {
       badge: "02",
-      title: "Millennial Longevity",
-      detail: "Engineered to withstand climatic extremes, earthquakes, and time itself using non-ferrous mortarless dry-stone interlocking methods."
+      title: "Explain the choices",
+      detail: "We aim to make plans, materials and next steps easier to understand before you make a decision."
     },
     {
       badge: "03",
-      title: "Artisanal Dignity & Guild Welfare",
-      detail: "Providing ethical living wages, healthcare, safe cutting-edge dust extraction studios, and generational apprenticeship to hereditary artisans."
+      title: "Plan for the place",
+      detail: "The site, intended use and agreed scope all help shape a practical design."
     },
     {
       badge: "04",
-      title: "Fiduciary Transparency",
-      detail: "Clear milestone billing, audited stone quarry origin certification, and photographic construction transparency for temple trusts worldwide."
+      title: "Agree the scope",
+      detail: "Responsibilities, deliverables and open questions should be clear before work begins."
     }
   ]
 };

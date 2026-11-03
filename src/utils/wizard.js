@@ -1,27 +1,25 @@
 import { servicesData } from '../data/servicesData.js';
 import { escapeHtml as esc, validateWizard, validateReferenceFile, briefEntries, createBriefText } from './planner.js';
 import { createReferenceId, notificationLinks, sendAutomaticNotification, whatsappFallbackLinks, openWhatsappChat } from './notify.js';
-import { generateBriefDocHtml, downloadDocFile } from './documentExport.js';
-import { downloadBriefPdf } from './pdfExport.js';
 
 const categories = [
-  ['New Temple Complex', 'A complete temple campus with sanctum, gateway and courtyards.'],
-  ['Private Family Sanctum', 'An intimate stone shrine for a family estate or retreat.'],
-  ['Rajagopuram Gateway', 'A traditional entrance gateway for an existing sanctuary.'],
-  ['Acoustic Stone Mandapam', 'A pillared pavilion for celebrations, music and gathering.'],
-  ['Heritage Restoration', 'Conservation and structural care for an existing temple.']
+  ['New temple', 'Plan a new temple or community place of worship.'],
+  ['Family shrine', 'Create a smaller place for family prayer.'],
+  ['Temple gateway', 'Plan an entrance or gateway for an existing temple.'],
+  ['Hall or mandapam', 'Create a space for gatherings, ceremonies or prayer.'],
+  ['Temple repair', 'Discuss repairs or improvements to an existing temple.']
 ];
 /** Services the planner deliberately keeps out of its step 5 shortlist. */
-const plannerExcludedServices = ['Turnkey Consecration Execution'];
+const plannerExcludedServices = ['Project coordination'];
 const plannerServices = () => servicesData.filter(service => !plannerExcludedServices.includes(service.title));
 const footprints = ['Under 5,000 sq.ft (Private / Compact Shrine)', '5,000 – 15,000 sq.ft (Medium Community Sanctuary)',
   '15,000 – 40,000 sq.ft (Monumental Temple Complex)', 'Over 40,000 sq.ft (Grand Regional Pilgrimage Sanctuary)'];
 const stones = [
-  ['Traditional Cement Work & Sudhai Art', 'Sacred hand-sculpted cement craft and ornamental detail.'],
-  ['Dense Krishna Shila Stone', 'Deep tones and traditional hand-carved stone detail.'],
-  ['Warm Golden Sandstone & Cement Work', 'Warm hues, crystalline texture, and fine sculpted relief.']
+  ['Black granite', 'A traditional option for carved stonework.'],
+  ['Warm sandstone', 'A warmer colour for selected design details.'],
+  ['Grey granite', 'A quieter tone for pillars and other elements.']
 ];
-const stepNames = ['Category', 'Location', 'Tradition', 'Materials', 'Services', 'Your details'];
+const stepNames = ['Project', 'Site', 'Preferences', 'Materials', 'Support', 'Your details'];
 const defaults = () => ({
   currentStep: 1, category: categories[0][0], location: '', acreage: '',
   style: '', deity: '', footprint: footprints[0], stone: stones[0][0],
@@ -64,27 +62,27 @@ export function createWizard(view) {
 
   function stepContent() {
     switch (draft.currentStep) {
-      case 1: return `<h3>What would you like to create?</h3><p>Choose the starting point for your sacred project.</p>${choices('category', categories)}`;
-      case 2: return `<h3>A sense of place.</h3><p>Type the location of the sacred land in your own words.</p>
-        ${field('location', 'Geographic region', 'e.g. Thanjavur, Tamil Nadu, India', 'text', true)}
-        ${field('acreage', 'Available land / plot dimensions', 'e.g. 2.5 acres or 120 × 180 feet', 'text', true)}`;
-      case 3: return `<h3>Rooted in your tradition.</h3><p>Name the architectural language and presiding deity in your own words.</p>
-        ${field('style', 'Architectural tradition', 'e.g. Imperial Chola, Vijayanagara, Contemporary heritage fusion', 'text', true)}
-        ${field('deity', 'Presiding deity (Moolavar)', 'e.g. Lord Shiva, Sri Venkateswara, Lord Murugan', 'text', true)}`;
-      case 4: return `<h3>Scale, texture & permanence.</h3><p>These initial preferences can be refined with the studio.</p>
-        ${select('footprint', 'Estimated built footprint', footprints)}
-        <p class="form-label">Preferred stone medium</p>${choices('stone', stones)}`;
-      case 5: return `<h3>The right expertise for your vision.</h3><p>Select one or more services. Your summary updates as you choose.</p>
+      case 1: return `<h3>What are you planning?</h3><p>Choose the closest option. You can explain more later.</p>${choices('category', categories)}`;
+      case 2: return `<h3>Where is the project?</h3><p>Add the location or approximate site size if you know it. You can skip either for now.</p>
+        ${field('location', 'Project location', 'e.g. Thanjavur, Tamil Nadu, India')}
+        ${field('acreage', 'Approximate site size (optional)', 'e.g. 2.5 acres or 120 × 180 feet')}`;
+      case 3: return `<h3>Any traditions or details to keep in mind?</h3><p>Share a style, deity or design preference if you have one. It is okay if you are still deciding.</p>
+        ${field('style', 'Temple style or tradition (optional)', 'Describe what you like, or leave this blank')}
+        ${field('deity', 'Deity or important feature (optional)', 'Add a name or detail if you know it')}`;
+      case 4: return `<h3>Size and materials</h3><p>Choose an estimate if you can. These preferences can be discussed and changed later.</p>
+        ${select('footprint', 'Approximate built size', footprints)}
+        <p class="form-label">Is there a material you like?</p>${choices('stone', stones)}`;
+      case 5: return `<h3>What would you like help with?</h3><p>Choose one or more options. We can discuss the details later.</p>
         ${choices('services', plannerServices().map(s => [s.title, s.subtitle]), true)}`;
-      case 6: return `<h3>A few details to complete your brief.</h3>
-        <p>Submitting sends this brief straight to the studio desk by email and WhatsApp. Refreshing clears the draft.</p>
-        <div class="form-row">${field('patronName', 'Patron / trustee name', 'Your full name', 'text', true)}
+      case 6: return `<h3>How can we get back to you?</h3>
+        <p>Review the details, then submit. We will prepare an email and WhatsApp hand-off for you to send. Refreshing clears this draft.</p>
+        <div class="form-row">${field('patronName', 'Your name', 'Your full name', 'text', true)}
           ${field('trustName', 'Trust / foundation', 'Optional')}</div>
         <div class="form-row">${field('email', 'Email address', 'you@example.com', 'email', true)}
           ${field('phone', 'Phone / WhatsApp', '+91 ...', 'tel', true)}</div>
-        <div class="form-group"><label class="form-label" for="wizard-notes">Your vision & requirements</label>
+        <div class="form-group">        <label class="form-label" for="wizard-notes">Anything else you would like us to know?</label>
           <textarea id="wizard-notes" name="notes" class="form-textarea" maxlength="5000"
-            placeholder="Tell us about the site, traditions, timeline or design ideas.">${esc(draft.notes)}</textarea></div>
+            placeholder="Share any ideas, questions or details you already have.">${esc(draft.notes)}</textarea></div>
         <div class="form-group">
           <label class="form-label" for="reference-file">Optional reference file</label>
           <div class="file-dropzone" id="reference-dropzone">
@@ -95,7 +93,7 @@ export function createWizard(view) {
             <p id="reference-status" role="status">${esc(draft.uploadedFileName || 'No reference selected.')}</p>
             ${referenceFile ? '<button class="btn btn-ghost" type="button" id="remove-reference">Remove reference</button>' : ''}
           </div>
-          <p class="form-notice">No file is uploaded. Your brief includes its filename only; share the actual reference separately.</p>
+          <p class="form-notice">Your file is not uploaded. Only its name is added to the brief; share the actual file separately.</p>
         </div>`;
       default: return '';
     }
@@ -162,8 +160,8 @@ export function createWizard(view) {
         <div class="container">
           <div class="section-header">
             <span class="section-tag">Your vision, thoughtfully planned</span>
-            <h1>Every legacy begins<br>with a conversation.</h1>
-            <p class="lead">A simple six-step planner to bring your sacred project into focus.</p>
+            <h1>Tell us about your temple project.</h1>
+            <p class="lead">A few simple questions help us understand your idea. Skip anything you have not decided yet.</p>
           </div>
           <div class="wizard-container">
             <div class="wizard-main-panel">
@@ -254,13 +252,7 @@ export function createWizard(view) {
     notification = notificationLinks(draft, referenceId);
     submitted = true;
     error = '';
-    // Automatically trigger neat PDF download for the owner/patron records
-    try {
-      downloadBriefPdf(draft, referenceId);
-    } catch (e) {
-      console.warn('PDF auto-download warning:', e);
-    }
-    // Opened inside the submit gesture so browsers allow the WhatsApp tab directly to 9940295932
+    // Opened inside the submit gesture so browsers allow the WhatsApp tab.
     handedOff = whatsappFallbackLinks(draft, referenceId);
     handedOff.forEach(entry => openWhatsappChat(entry.href));
     renderReview();
@@ -273,7 +265,7 @@ export function createWizard(view) {
     sent: 'Sent automatically ✓',
     failed: 'Could not send automatically — use the link',
     manual: 'Not switched on yet — use the link',
-    handoff: 'WhatsApp opened to 9940295932 — press send'
+    handoff: 'WhatsApp opened — press send'
   };
 
   /** Paints the delivery outcome in place, so the review screen never jumps. */
@@ -293,8 +285,8 @@ export function createWizard(view) {
     const summary = view.querySelector('#brief-reference');
     if (!summary) return;
     summary.innerHTML = channels.every(([, status]) => status === 'sent')
-      ? `<strong>Reference ${esc(referenceId)}.</strong> Your brief was dispatched automatically to the studio desk (+91 99402 95932) and email — your neat PDF has been downloaded. Download or print an additional copy below.`
-      : `<strong>Reference ${esc(referenceId)}.</strong> Your brief and neat PDF are prepared. WhatsApp has opened directly to <strong>+91 99402 95932</strong>. Use the buttons below for additional downloads.`;
+      ? `<strong>Reference ${esc(referenceId)}.</strong> Your brief was sent automatically to the studio email and WhatsApp desk — nothing more to do. Download or print a copy for your records.`
+      : `<strong>Reference ${esc(referenceId)}.</strong> Your brief is ready, but not every studio channel could be reached automatically. Use the links below to send it to the remaining owner contacts.`;
   }
 
   function renderReview() {
@@ -304,32 +296,31 @@ export function createWizard(view) {
         <div class="confirmation-card">
           <span class="section-tag">Brief submitted</span>
           <h1>Your vision.<br>A considered beginning.</h1>
-          <p class="lead">Your project brief has been filed with the studio desk. A neat PDF has been downloaded automatically.</p>
-          <p class="form-notice" id="brief-reference"><strong>Reference ${esc(referenceId)}.</strong> Dispatched to studio WhatsApp (+91 99402 95932) & email…</p>
+          <p class="lead">Your project brief has been filed with the studio desk.</p>
+          <p class="form-notice" id="brief-reference"><strong>Reference ${esc(referenceId)}.</strong> Sending your brief to the studio automatically…</p>
           <ul class="submission-channels">
             <li><small>Email</small><a id="${channels.email.id}" href="${esc(channels.email.href)}">${esc(channels.email.label)}</a>
               <em class="delivery-status" id="delivery-status-email">${statusText.sending}</em></li>
-            ${channels.whatsapp.map(entry => `<li><small>WhatsApp (${entry.number === '919940295932' ? 'Primary' : 'Studio'})</small><a id="${entry.id}" href="${esc(entry.href)}">${esc(entry.label)}</a>
+            ${channels.whatsapp.map(entry => `<li><small>WhatsApp</small><a id="${entry.id}" href="${esc(entry.href)}">${esc(entry.label)}</a>
               <em class="delivery-status" id="delivery-status-${entry.number}">${statusText.sending}</em></li>`).join('')}
           </ul>
           <dl class="brief-review">${briefEntries(draft).map(([label, value]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>
           <div class="brief-actions">
-            <button type="button" id="download-brief" class="btn btn-gold">📄 Download Neat PDF Brief ↓</button>
-            <button type="button" id="download-brief-doc" class="btn btn-outline-gold">Download Word (.doc) ↓</button>
+            <button type="button" id="download-brief" class="btn btn-gold">Download brief ↓</button>
             <button type="button" id="print-brief" class="btn btn-outline-gold">Print / Save PDF</button>
             <button type="button" id="edit-brief" class="btn btn-outline-gold">Edit details</button>
             <button type="button" id="reset-brief" class="btn btn-ghost">Clear & start again</button>
           </div>
         </div>
       </div></section>`;
-    view.querySelector('#download-brief')?.addEventListener('click', () => {
-      downloadBriefPdf(draft, referenceId);
+    view.querySelector('#download-brief').addEventListener('click', () => {
+      const url = URL.createObjectURL(new Blob([createBriefText(draft, referenceId)], { type: 'text/plain;charset=utf-8' }));
+      const link = document.createElement('a');
+      link.href = url; link.download = 'sri-akil-project-brief.txt'; document.body.append(link); link.click(); link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
     });
-    view.querySelector('#download-brief-doc')?.addEventListener('click', () => {
-      downloadDocFile(`sri-akil-project-brief-${referenceId || 'draft'}.doc`, generateBriefDocHtml(draft, referenceId));
-    });
-    view.querySelector('#print-brief')?.addEventListener('click', () => window.print());
-    view.querySelector('#edit-brief')?.addEventListener('click', () => { submitted = false; render(); });
+    view.querySelector('#print-brief').addEventListener('click', () => window.print());
+    view.querySelector('#edit-brief').addEventListener('click', () => { submitted = false; render(); });
     view.querySelector('#reset-brief').addEventListener('click', () => {
       if (!window.confirm('Clear this project brief and all entered details?')) return;
       draft = defaults(); submitted = false; referenceId = ''; notification = null;

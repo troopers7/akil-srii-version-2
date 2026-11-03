@@ -1,0 +1,1951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Extracted Photos Review & Angle Adjustment</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #0f1115; color: #eee; margin: 0; padding: 24px; }
+    h1 { color: #d4af37; margin-bottom: 8px; }
+    p { color: #aaa; margin-bottom: 20px; font-size: 14px; }
+    .export-box { background: #1a1e24; border: 1px solid #333; padding: 12px 18px; border-radius: 8px; margin-bottom: 24px; display: flex; gap: 12px; align-items: center; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+    .card { background: #181b20; border: 1px solid #282e38; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
+    .img-box { width: 100%; height: 260px; display: flex; align-items: center; justify-content: center; background: #000; border-radius: 6px; overflow: hidden; position: relative; }
+    .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.2s ease; }
+    .name { font-size: 11px; margin-top: 10px; color: #ccc; word-break: break-all; text-align: center; }
+    .rot-controls { display: flex; gap: 6px; margin-top: 8px; align-items: center; }
+    button { background: #252b36; color: #e5c07b; border: 1px solid #3e4756; padding: 5px 9px; font-size: 11px; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #353e4f; }
+    .deg-label { font-size: 11px; color: #888; min-width: 28px; text-align: center; }
+  </style>
+</head>
+<body>
+  <h1>Sri Akil - Photo Review & Orientation Tuner</h1>
+  <p>Showing 146 extracted images. Click rotation buttons to orient sideways images.</p>
+  <div class="export-box">
+    <button onclick="exportRotations()" style="padding: 8px 16px; font-weight: bold; background: #d4af37; color: #000;">Export Rotations JSON</button>
+    <span id="export-status" style="font-size: 12px; color: #4ade80;"></span>
+  </div>
+  <div class="grid">
+    
+  <div class="card" id="card-0">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_001_obj72_1280x576.jpg" id="img-0" loading="lazy" alt="pdf1_img_001_obj72_1280x576.jpg">
+    </div>
+    <div class="name">#1 (pdf1): <strong>pdf1_img_001_obj72_1280x576.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(0, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(0, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(0, 180)">180°</button>
+      <span class="deg-label" id="deg-0">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-1">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_002_obj76_720x1280.jpg" id="img-1" loading="lazy" alt="pdf1_img_002_obj76_720x1280.jpg">
+    </div>
+    <div class="name">#2 (pdf1): <strong>pdf1_img_002_obj76_720x1280.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(1, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(1, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(1, 180)">180°</button>
+      <span class="deg-label" id="deg-1">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-2">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_003_obj79_576x1280.jpg" id="img-2" loading="lazy" alt="pdf1_img_003_obj79_576x1280.jpg">
+    </div>
+    <div class="name">#3 (pdf1): <strong>pdf1_img_003_obj79_576x1280.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(2, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(2, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(2, 180)">180°</button>
+      <span class="deg-label" id="deg-2">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-3">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_004_obj82_1600x902.jpg" id="img-3" loading="lazy" alt="pdf1_img_004_obj82_1600x902.jpg">
+    </div>
+    <div class="name">#4 (pdf1): <strong>pdf1_img_004_obj82_1600x902.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(3, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(3, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(3, 180)">180°</button>
+      <span class="deg-label" id="deg-3">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-4">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_005_obj85_902x1600.jpg" id="img-4" loading="lazy" alt="pdf1_img_005_obj85_902x1600.jpg">
+    </div>
+    <div class="name">#5 (pdf1): <strong>pdf1_img_005_obj85_902x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(4, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(4, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(4, 180)">180°</button>
+      <span class="deg-label" id="deg-4">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-5">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_006_obj88_902x1600.jpg" id="img-5" loading="lazy" alt="pdf1_img_006_obj88_902x1600.jpg">
+    </div>
+    <div class="name">#6 (pdf1): <strong>pdf1_img_006_obj88_902x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(5, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(5, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(5, 180)">180°</button>
+      <span class="deg-label" id="deg-5">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-6">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_007_obj91_902x1600.jpg" id="img-6" loading="lazy" alt="pdf1_img_007_obj91_902x1600.jpg">
+    </div>
+    <div class="name">#7 (pdf1): <strong>pdf1_img_007_obj91_902x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(6, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(6, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(6, 180)">180°</button>
+      <span class="deg-label" id="deg-6">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-7">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_008_obj94_720x1280.jpg" id="img-7" loading="lazy" alt="pdf1_img_008_obj94_720x1280.jpg">
+    </div>
+    <div class="name">#8 (pdf1): <strong>pdf1_img_008_obj94_720x1280.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(7, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(7, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(7, 180)">180°</button>
+      <span class="deg-label" id="deg-7">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-8">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_009_obj97_902x1600.jpg" id="img-8" loading="lazy" alt="pdf1_img_009_obj97_902x1600.jpg">
+    </div>
+    <div class="name">#9 (pdf1): <strong>pdf1_img_009_obj97_902x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(8, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(8, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(8, 180)">180°</button>
+      <span class="deg-label" id="deg-8">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-9">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_010_obj100_1600x720.jpg" id="img-9" loading="lazy" alt="pdf1_img_010_obj100_1600x720.jpg">
+    </div>
+    <div class="name">#10 (pdf1): <strong>pdf1_img_010_obj100_1600x720.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(9, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(9, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(9, 180)">180°</button>
+      <span class="deg-label" id="deg-9">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-10">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_011_obj103_720x1600.jpg" id="img-10" loading="lazy" alt="pdf1_img_011_obj103_720x1600.jpg">
+    </div>
+    <div class="name">#11 (pdf1): <strong>pdf1_img_011_obj103_720x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(10, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(10, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(10, 180)">180°</button>
+      <span class="deg-label" id="deg-10">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-11">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_012_obj106_902x1600.jpg" id="img-11" loading="lazy" alt="pdf1_img_012_obj106_902x1600.jpg">
+    </div>
+    <div class="name">#12 (pdf1): <strong>pdf1_img_012_obj106_902x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(11, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(11, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(11, 180)">180°</button>
+      <span class="deg-label" id="deg-11">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-12">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_013_obj109_828x1466.jpg" id="img-12" loading="lazy" alt="pdf1_img_013_obj109_828x1466.jpg">
+    </div>
+    <div class="name">#13 (pdf1): <strong>pdf1_img_013_obj109_828x1466.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(12, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(12, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(12, 180)">180°</button>
+      <span class="deg-label" id="deg-12">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-13">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_014_obj112_1600x1200.jpg" id="img-13" loading="lazy" alt="pdf1_img_014_obj112_1600x1200.jpg">
+    </div>
+    <div class="name">#14 (pdf1): <strong>pdf1_img_014_obj112_1600x1200.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(13, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(13, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(13, 180)">180°</button>
+      <span class="deg-label" id="deg-13">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-14">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_015_obj115_648x1466.jpg" id="img-14" loading="lazy" alt="pdf1_img_015_obj115_648x1466.jpg">
+    </div>
+    <div class="name">#15 (pdf1): <strong>pdf1_img_015_obj115_648x1466.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(14, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(14, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(14, 180)">180°</button>
+      <span class="deg-label" id="deg-14">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-15">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_016_obj118_720x1280.jpg" id="img-15" loading="lazy" alt="pdf1_img_016_obj118_720x1280.jpg">
+    </div>
+    <div class="name">#16 (pdf1): <strong>pdf1_img_016_obj118_720x1280.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(15, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(15, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(15, 180)">180°</button>
+      <span class="deg-label" id="deg-15">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-16">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_017_obj121_1824x1376.jpg" id="img-16" loading="lazy" alt="pdf1_img_017_obj121_1824x1376.jpg">
+    </div>
+    <div class="name">#17 (pdf1): <strong>pdf1_img_017_obj121_1824x1376.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(16, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(16, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(16, 180)">180°</button>
+      <span class="deg-label" id="deg-16">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-17">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_018_obj124_1280x725.jpg" id="img-17" loading="lazy" alt="pdf1_img_018_obj124_1280x725.jpg">
+    </div>
+    <div class="name">#18 (pdf1): <strong>pdf1_img_018_obj124_1280x725.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(17, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(17, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(17, 180)">180°</button>
+      <span class="deg-label" id="deg-17">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-18">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_019_obj127_780x1040.jpg" id="img-18" loading="lazy" alt="pdf1_img_019_obj127_780x1040.jpg">
+    </div>
+    <div class="name">#19 (pdf1): <strong>pdf1_img_019_obj127_780x1040.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(18, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(18, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(18, 180)">180°</button>
+      <span class="deg-label" id="deg-18">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-19">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_020_obj130_1280x572.jpg" id="img-19" loading="lazy" alt="pdf1_img_020_obj130_1280x572.jpg">
+    </div>
+    <div class="name">#20 (pdf1): <strong>pdf1_img_020_obj130_1280x572.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(19, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(19, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(19, 180)">180°</button>
+      <span class="deg-label" id="deg-19">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-20">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_021_obj133_1280x960.jpg" id="img-20" loading="lazy" alt="pdf1_img_021_obj133_1280x960.jpg">
+    </div>
+    <div class="name">#21 (pdf1): <strong>pdf1_img_021_obj133_1280x960.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(20, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(20, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(20, 180)">180°</button>
+      <span class="deg-label" id="deg-20">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-21">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_022_obj139_1280x960.jpg" id="img-21" loading="lazy" alt="pdf1_img_022_obj139_1280x960.jpg">
+    </div>
+    <div class="name">#22 (pdf1): <strong>pdf1_img_022_obj139_1280x960.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(21, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(21, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(21, 180)">180°</button>
+      <span class="deg-label" id="deg-21">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-22">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_023_obj142_1600x1200.jpg" id="img-22" loading="lazy" alt="pdf1_img_023_obj142_1600x1200.jpg">
+    </div>
+    <div class="name">#23 (pdf1): <strong>pdf1_img_023_obj142_1600x1200.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(22, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(22, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(22, 180)">180°</button>
+      <span class="deg-label" id="deg-22">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-23">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_024_obj145_468x1040.jpg" id="img-23" loading="lazy" alt="pdf1_img_024_obj145_468x1040.jpg">
+    </div>
+    <div class="name">#24 (pdf1): <strong>pdf1_img_024_obj145_468x1040.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(23, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(23, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(23, 180)">180°</button>
+      <span class="deg-label" id="deg-23">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-24">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_025_obj148_960x1280.jpg" id="img-24" loading="lazy" alt="pdf1_img_025_obj148_960x1280.jpg">
+    </div>
+    <div class="name">#25 (pdf1): <strong>pdf1_img_025_obj148_960x1280.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(24, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(24, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(24, 180)">180°</button>
+      <span class="deg-label" id="deg-24">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-25">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_026_obj151_960x1280.jpg" id="img-25" loading="lazy" alt="pdf1_img_026_obj151_960x1280.jpg">
+    </div>
+    <div class="name">#26 (pdf1): <strong>pdf1_img_026_obj151_960x1280.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(25, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(25, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(25, 180)">180°</button>
+      <span class="deg-label" id="deg-25">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-26">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_027_obj154_450x1000.jpg" id="img-26" loading="lazy" alt="pdf1_img_027_obj154_450x1000.jpg">
+    </div>
+    <div class="name">#27 (pdf1): <strong>pdf1_img_027_obj154_450x1000.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(26, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(26, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(26, 180)">180°</button>
+      <span class="deg-label" id="deg-26">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-27">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_028_obj157_1152x560.jpg" id="img-27" loading="lazy" alt="pdf1_img_028_obj157_1152x560.jpg">
+    </div>
+    <div class="name">#28 (pdf1): <strong>pdf1_img_028_obj157_1152x560.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(27, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(27, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(27, 180)">180°</button>
+      <span class="deg-label" id="deg-27">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-28">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_029_obj160_780x1040.jpg" id="img-28" loading="lazy" alt="pdf1_img_029_obj160_780x1040.jpg">
+    </div>
+    <div class="name">#29 (pdf1): <strong>pdf1_img_029_obj160_780x1040.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(28, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(28, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(28, 180)">180°</button>
+      <span class="deg-label" id="deg-28">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-29">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_030_obj163_768x1280.jpg" id="img-29" loading="lazy" alt="pdf1_img_030_obj163_768x1280.jpg">
+    </div>
+    <div class="name">#30 (pdf1): <strong>pdf1_img_030_obj163_768x1280.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(29, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(29, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(29, 180)">180°</button>
+      <span class="deg-label" id="deg-29">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-30">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_031_obj166_1280x768.jpg" id="img-30" loading="lazy" alt="pdf1_img_031_obj166_1280x768.jpg">
+    </div>
+    <div class="name">#31 (pdf1): <strong>pdf1_img_031_obj166_1280x768.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(30, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(30, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(30, 180)">180°</button>
+      <span class="deg-label" id="deg-30">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-31">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_032_obj169_1200x1600.jpg" id="img-31" loading="lazy" alt="pdf1_img_032_obj169_1200x1600.jpg">
+    </div>
+    <div class="name">#32 (pdf1): <strong>pdf1_img_032_obj169_1200x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(31, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(31, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(31, 180)">180°</button>
+      <span class="deg-label" id="deg-31">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-32">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_033_obj172_768x1280.jpg" id="img-32" loading="lazy" alt="pdf1_img_033_obj172_768x1280.jpg">
+    </div>
+    <div class="name">#33 (pdf1): <strong>pdf1_img_033_obj172_768x1280.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(32, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(32, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(32, 180)">180°</button>
+      <span class="deg-label" id="deg-32">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-33">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_034_obj175_1600x1200.jpg" id="img-33" loading="lazy" alt="pdf1_img_034_obj175_1600x1200.jpg">
+    </div>
+    <div class="name">#34 (pdf1): <strong>pdf1_img_034_obj175_1600x1200.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(33, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(33, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(33, 180)">180°</button>
+      <span class="deg-label" id="deg-33">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-34">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_035_obj178_1600x1200.jpg" id="img-34" loading="lazy" alt="pdf1_img_035_obj178_1600x1200.jpg">
+    </div>
+    <div class="name">#35 (pdf1): <strong>pdf1_img_035_obj178_1600x1200.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(34, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(34, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(34, 180)">180°</button>
+      <span class="deg-label" id="deg-34">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-35">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_036_obj181_1824x1376.jpg" id="img-35" loading="lazy" alt="pdf1_img_036_obj181_1824x1376.jpg">
+    </div>
+    <div class="name">#36 (pdf1): <strong>pdf1_img_036_obj181_1824x1376.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(35, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(35, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(35, 180)">180°</button>
+      <span class="deg-label" id="deg-35">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-36">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_037_obj184_1824x1376.jpg" id="img-36" loading="lazy" alt="pdf1_img_037_obj184_1824x1376.jpg">
+    </div>
+    <div class="name">#37 (pdf1): <strong>pdf1_img_037_obj184_1824x1376.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(36, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(36, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(36, 180)">180°</button>
+      <span class="deg-label" id="deg-36">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-37">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_038_obj187_1600x718.jpg" id="img-37" loading="lazy" alt="pdf1_img_038_obj187_1600x718.jpg">
+    </div>
+    <div class="name">#38 (pdf1): <strong>pdf1_img_038_obj187_1600x718.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(37, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(37, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(37, 180)">180°</button>
+      <span class="deg-label" id="deg-37">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-38">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_039_obj190_1600x718.jpg" id="img-38" loading="lazy" alt="pdf1_img_039_obj190_1600x718.jpg">
+    </div>
+    <div class="name">#39 (pdf1): <strong>pdf1_img_039_obj190_1600x718.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(38, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(38, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(38, 180)">180°</button>
+      <span class="deg-label" id="deg-38">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-39">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_040_obj193_1280x576.jpg" id="img-39" loading="lazy" alt="pdf1_img_040_obj193_1280x576.jpg">
+    </div>
+    <div class="name">#40 (pdf1): <strong>pdf1_img_040_obj193_1280x576.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(39, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(39, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(39, 180)">180°</button>
+      <span class="deg-label" id="deg-39">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-40">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_041_obj196_1280x720.jpg" id="img-40" loading="lazy" alt="pdf1_img_041_obj196_1280x720.jpg">
+    </div>
+    <div class="name">#41 (pdf1): <strong>pdf1_img_041_obj196_1280x720.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(40, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(40, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(40, 180)">180°</button>
+      <span class="deg-label" id="deg-40">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-41">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_042_obj200_1600x1200.jpg" id="img-41" loading="lazy" alt="pdf1_img_042_obj200_1600x1200.jpg">
+    </div>
+    <div class="name">#42 (pdf1): <strong>pdf1_img_042_obj200_1600x1200.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(41, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(41, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(41, 180)">180°</button>
+      <span class="deg-label" id="deg-41">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-42">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_043_obj203_899x1599.jpg" id="img-42" loading="lazy" alt="pdf1_img_043_obj203_899x1599.jpg">
+    </div>
+    <div class="name">#43 (pdf1): <strong>pdf1_img_043_obj203_899x1599.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(42, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(42, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(42, 180)">180°</button>
+      <span class="deg-label" id="deg-42">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-43">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_044_obj206_1599x906.jpg" id="img-43" loading="lazy" alt="pdf1_img_044_obj206_1599x906.jpg">
+    </div>
+    <div class="name">#44 (pdf1): <strong>pdf1_img_044_obj206_1599x906.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(43, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(43, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(43, 180)">180°</button>
+      <span class="deg-label" id="deg-43">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-44">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_045_obj209_899x1599.jpg" id="img-44" loading="lazy" alt="pdf1_img_045_obj209_899x1599.jpg">
+    </div>
+    <div class="name">#45 (pdf1): <strong>pdf1_img_045_obj209_899x1599.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(44, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(44, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(44, 180)">180°</button>
+      <span class="deg-label" id="deg-44">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-45">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_046_obj212_1599x899.jpg" id="img-45" loading="lazy" alt="pdf1_img_046_obj212_1599x899.jpg">
+    </div>
+    <div class="name">#46 (pdf1): <strong>pdf1_img_046_obj212_1599x899.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(45, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(45, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(45, 180)">180°</button>
+      <span class="deg-label" id="deg-45">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-46">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_047_obj215_1080x1292.jpg" id="img-46" loading="lazy" alt="pdf1_img_047_obj215_1080x1292.jpg">
+    </div>
+    <div class="name">#47 (pdf1): <strong>pdf1_img_047_obj215_1080x1292.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(46, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(46, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(46, 180)">180°</button>
+      <span class="deg-label" id="deg-46">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-47">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_048_obj218_720x1600.jpg" id="img-47" loading="lazy" alt="pdf1_img_048_obj218_720x1600.jpg">
+    </div>
+    <div class="name">#48 (pdf1): <strong>pdf1_img_048_obj218_720x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(47, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(47, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(47, 180)">180°</button>
+      <span class="deg-label" id="deg-47">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-48">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_049_obj221_1600x1200.jpg" id="img-48" loading="lazy" alt="pdf1_img_049_obj221_1600x1200.jpg">
+    </div>
+    <div class="name">#49 (pdf1): <strong>pdf1_img_049_obj221_1600x1200.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(48, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(48, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(48, 180)">180°</button>
+      <span class="deg-label" id="deg-48">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-49">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_050_obj224_720x1600.jpg" id="img-49" loading="lazy" alt="pdf1_img_050_obj224_720x1600.jpg">
+    </div>
+    <div class="name">#50 (pdf1): <strong>pdf1_img_050_obj224_720x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(49, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(49, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(49, 180)">180°</button>
+      <span class="deg-label" id="deg-49">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-50">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_051_obj227_1599x899.jpg" id="img-50" loading="lazy" alt="pdf1_img_051_obj227_1599x899.jpg">
+    </div>
+    <div class="name">#51 (pdf1): <strong>pdf1_img_051_obj227_1599x899.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(50, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(50, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(50, 180)">180°</button>
+      <span class="deg-label" id="deg-50">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-51">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_052_obj230_1599x899.jpg" id="img-51" loading="lazy" alt="pdf1_img_052_obj230_1599x899.jpg">
+    </div>
+    <div class="name">#52 (pdf1): <strong>pdf1_img_052_obj230_1599x899.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(51, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(51, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(51, 180)">180°</button>
+      <span class="deg-label" id="deg-51">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-52">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_053_obj233_1599x899.jpg" id="img-52" loading="lazy" alt="pdf1_img_053_obj233_1599x899.jpg">
+    </div>
+    <div class="name">#53 (pdf1): <strong>pdf1_img_053_obj233_1599x899.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(52, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(52, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(52, 180)">180°</button>
+      <span class="deg-label" id="deg-52">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-53">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_054_obj236_1600x1200.jpg" id="img-53" loading="lazy" alt="pdf1_img_054_obj236_1600x1200.jpg">
+    </div>
+    <div class="name">#54 (pdf1): <strong>pdf1_img_054_obj236_1600x1200.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(53, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(53, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(53, 180)">180°</button>
+      <span class="deg-label" id="deg-53">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-54">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_055_obj239_1599x899.jpg" id="img-54" loading="lazy" alt="pdf1_img_055_obj239_1599x899.jpg">
+    </div>
+    <div class="name">#55 (pdf1): <strong>pdf1_img_055_obj239_1599x899.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(54, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(54, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(54, 180)">180°</button>
+      <span class="deg-label" id="deg-54">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-55">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_056_obj242_1599x899.jpg" id="img-55" loading="lazy" alt="pdf1_img_056_obj242_1599x899.jpg">
+    </div>
+    <div class="name">#56 (pdf1): <strong>pdf1_img_056_obj242_1599x899.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(55, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(55, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(55, 180)">180°</button>
+      <span class="deg-label" id="deg-55">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-56">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_057_obj245_1599x899.jpg" id="img-56" loading="lazy" alt="pdf1_img_057_obj245_1599x899.jpg">
+    </div>
+    <div class="name">#57 (pdf1): <strong>pdf1_img_057_obj245_1599x899.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(56, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(56, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(56, 180)">180°</button>
+      <span class="deg-label" id="deg-56">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-57">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_058_obj248_1599x899.jpg" id="img-57" loading="lazy" alt="pdf1_img_058_obj248_1599x899.jpg">
+    </div>
+    <div class="name">#58 (pdf1): <strong>pdf1_img_058_obj248_1599x899.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(57, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(57, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(57, 180)">180°</button>
+      <span class="deg-label" id="deg-57">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-58">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_059_obj251_1599x899.jpg" id="img-58" loading="lazy" alt="pdf1_img_059_obj251_1599x899.jpg">
+    </div>
+    <div class="name">#59 (pdf1): <strong>pdf1_img_059_obj251_1599x899.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(58, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(58, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(58, 180)">180°</button>
+      <span class="deg-label" id="deg-58">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-59">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_060_obj254_1599x899.jpg" id="img-59" loading="lazy" alt="pdf1_img_060_obj254_1599x899.jpg">
+    </div>
+    <div class="name">#60 (pdf1): <strong>pdf1_img_060_obj254_1599x899.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(59, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(59, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(59, 180)">180°</button>
+      <span class="deg-label" id="deg-59">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-60">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_061_obj257_1599x899.jpg" id="img-60" loading="lazy" alt="pdf1_img_061_obj257_1599x899.jpg">
+    </div>
+    <div class="name">#61 (pdf1): <strong>pdf1_img_061_obj257_1599x899.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(60, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(60, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(60, 180)">180°</button>
+      <span class="deg-label" id="deg-60">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-61">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_062_obj261_1599x899.jpg" id="img-61" loading="lazy" alt="pdf1_img_062_obj261_1599x899.jpg">
+    </div>
+    <div class="name">#62 (pdf1): <strong>pdf1_img_062_obj261_1599x899.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(61, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(61, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(61, 180)">180°</button>
+      <span class="deg-label" id="deg-61">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-62">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_063_obj264_1599x899.jpg" id="img-62" loading="lazy" alt="pdf1_img_063_obj264_1599x899.jpg">
+    </div>
+    <div class="name">#63 (pdf1): <strong>pdf1_img_063_obj264_1599x899.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(62, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(62, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(62, 180)">180°</button>
+      <span class="deg-label" id="deg-62">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-63">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_064_obj267_1599x899.jpg" id="img-63" loading="lazy" alt="pdf1_img_064_obj267_1599x899.jpg">
+    </div>
+    <div class="name">#64 (pdf1): <strong>pdf1_img_064_obj267_1599x899.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(63, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(63, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(63, 180)">180°</button>
+      <span class="deg-label" id="deg-63">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-64">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_065_obj270_1599x899.jpg" id="img-64" loading="lazy" alt="pdf1_img_065_obj270_1599x899.jpg">
+    </div>
+    <div class="name">#65 (pdf1): <strong>pdf1_img_065_obj270_1599x899.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(64, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(64, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(64, 180)">180°</button>
+      <span class="deg-label" id="deg-64">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-65">
+    <div class="img-box">
+      <img src="/extracted/pdf1/pdf1_img_066_obj273_1599x899.jpg" id="img-65" loading="lazy" alt="pdf1_img_066_obj273_1599x899.jpg">
+    </div>
+    <div class="name">#66 (pdf1): <strong>pdf1_img_066_obj273_1599x899.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(65, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(65, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(65, 180)">180°</button>
+      <span class="deg-label" id="deg-65">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-66">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_001_obj4_1204x1600.jpg" id="img-66" loading="lazy" alt="pdf2_img_001_obj4_1204x1600.jpg">
+    </div>
+    <div class="name">#67 (pdf2): <strong>pdf2_img_001_obj4_1204x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(66, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(66, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(66, 180)">180°</button>
+      <span class="deg-label" id="deg-66">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-67">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_002_obj3_1204x1600.jpg" id="img-67" loading="lazy" alt="pdf2_img_002_obj3_1204x1600.jpg">
+    </div>
+    <div class="name">#68 (pdf2): <strong>pdf2_img_002_obj3_1204x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(67, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(67, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(67, 180)">180°</button>
+      <span class="deg-label" id="deg-67">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-68">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_003_obj6_1204x1600.jpg" id="img-68" loading="lazy" alt="pdf2_img_003_obj6_1204x1600.jpg">
+    </div>
+    <div class="name">#69 (pdf2): <strong>pdf2_img_003_obj6_1204x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(68, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(68, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(68, 180)">180°</button>
+      <span class="deg-label" id="deg-68">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-69">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_004_obj9_1204x1600.jpg" id="img-69" loading="lazy" alt="pdf2_img_004_obj9_1204x1600.jpg">
+    </div>
+    <div class="name">#70 (pdf2): <strong>pdf2_img_004_obj9_1204x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(69, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(69, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(69, 180)">180°</button>
+      <span class="deg-label" id="deg-69">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-70">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_005_obj12_1204x1600.jpg" id="img-70" loading="lazy" alt="pdf2_img_005_obj12_1204x1600.jpg">
+    </div>
+    <div class="name">#71 (pdf2): <strong>pdf2_img_005_obj12_1204x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(70, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(70, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(70, 180)">180°</button>
+      <span class="deg-label" id="deg-70">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-71">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_006_obj15_1240x930.jpg" id="img-71" loading="lazy" alt="pdf2_img_006_obj15_1240x930.jpg">
+    </div>
+    <div class="name">#72 (pdf2): <strong>pdf2_img_006_obj15_1240x930.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(71, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(71, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(71, 180)">180°</button>
+      <span class="deg-label" id="deg-71">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-72">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_007_obj18_1240x930.jpg" id="img-72" loading="lazy" alt="pdf2_img_007_obj18_1240x930.jpg">
+    </div>
+    <div class="name">#73 (pdf2): <strong>pdf2_img_007_obj18_1240x930.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(72, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(72, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(72, 180)">180°</button>
+      <span class="deg-label" id="deg-72">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-73">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_008_obj21_1240x930.jpg" id="img-73" loading="lazy" alt="pdf2_img_008_obj21_1240x930.jpg">
+    </div>
+    <div class="name">#74 (pdf2): <strong>pdf2_img_008_obj21_1240x930.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(73, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(73, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(73, 180)">180°</button>
+      <span class="deg-label" id="deg-73">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-74">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_009_obj24_1240x930.jpg" id="img-74" loading="lazy" alt="pdf2_img_009_obj24_1240x930.jpg">
+    </div>
+    <div class="name">#75 (pdf2): <strong>pdf2_img_009_obj24_1240x930.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(74, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(74, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(74, 180)">180°</button>
+      <span class="deg-label" id="deg-74">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-75">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_010_obj27_964x1280.jpg" id="img-75" loading="lazy" alt="pdf2_img_010_obj27_964x1280.jpg">
+    </div>
+    <div class="name">#76 (pdf2): <strong>pdf2_img_010_obj27_964x1280.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(75, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(75, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(75, 180)">180°</button>
+      <span class="deg-label" id="deg-75">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-76">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_011_obj30_964x1280.jpg" id="img-76" loading="lazy" alt="pdf2_img_011_obj30_964x1280.jpg">
+    </div>
+    <div class="name">#77 (pdf2): <strong>pdf2_img_011_obj30_964x1280.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(76, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(76, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(76, 180)">180°</button>
+      <span class="deg-label" id="deg-76">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-77">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_012_obj33_964x1280.jpg" id="img-77" loading="lazy" alt="pdf2_img_012_obj33_964x1280.jpg">
+    </div>
+    <div class="name">#78 (pdf2): <strong>pdf2_img_012_obj33_964x1280.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(77, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(77, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(77, 180)">180°</button>
+      <span class="deg-label" id="deg-77">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-78">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_013_obj36_964x1280.jpg" id="img-78" loading="lazy" alt="pdf2_img_013_obj36_964x1280.jpg">
+    </div>
+    <div class="name">#79 (pdf2): <strong>pdf2_img_013_obj36_964x1280.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(78, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(78, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(78, 180)">180°</button>
+      <span class="deg-label" id="deg-78">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-79">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_014_obj39_1240x930.jpg" id="img-79" loading="lazy" alt="pdf2_img_014_obj39_1240x930.jpg">
+    </div>
+    <div class="name">#80 (pdf2): <strong>pdf2_img_014_obj39_1240x930.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(79, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(79, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(79, 180)">180°</button>
+      <span class="deg-label" id="deg-79">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-80">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_015_obj42_964x1280.jpg" id="img-80" loading="lazy" alt="pdf2_img_015_obj42_964x1280.jpg">
+    </div>
+    <div class="name">#81 (pdf2): <strong>pdf2_img_015_obj42_964x1280.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(80, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(80, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(80, 180)">180°</button>
+      <span class="deg-label" id="deg-80">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-81">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_016_obj45_964x1280.jpg" id="img-81" loading="lazy" alt="pdf2_img_016_obj45_964x1280.jpg">
+    </div>
+    <div class="name">#82 (pdf2): <strong>pdf2_img_016_obj45_964x1280.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(81, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(81, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(81, 180)">180°</button>
+      <span class="deg-label" id="deg-81">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-82">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_017_obj48_1024x1754.jpg" id="img-82" loading="lazy" alt="pdf2_img_017_obj48_1024x1754.jpg">
+    </div>
+    <div class="name">#83 (pdf2): <strong>pdf2_img_017_obj48_1024x1754.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(82, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(82, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(82, 180)">180°</button>
+      <span class="deg-label" id="deg-82">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-83">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_018_obj51_1240x930.jpg" id="img-83" loading="lazy" alt="pdf2_img_018_obj51_1240x930.jpg">
+    </div>
+    <div class="name">#84 (pdf2): <strong>pdf2_img_018_obj51_1240x930.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(83, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(83, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(83, 180)">180°</button>
+      <span class="deg-label" id="deg-83">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-84">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_019_obj54_720x1600.jpg" id="img-84" loading="lazy" alt="pdf2_img_019_obj54_720x1600.jpg">
+    </div>
+    <div class="name">#85 (pdf2): <strong>pdf2_img_019_obj54_720x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(84, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(84, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(84, 180)">180°</button>
+      <span class="deg-label" id="deg-84">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-85">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_020_obj57_720x1544.jpg" id="img-85" loading="lazy" alt="pdf2_img_020_obj57_720x1544.jpg">
+    </div>
+    <div class="name">#86 (pdf2): <strong>pdf2_img_020_obj57_720x1544.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(85, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(85, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(85, 180)">180°</button>
+      <span class="deg-label" id="deg-85">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-86">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_021_obj60_720x1544.jpg" id="img-86" loading="lazy" alt="pdf2_img_021_obj60_720x1544.jpg">
+    </div>
+    <div class="name">#87 (pdf2): <strong>pdf2_img_021_obj60_720x1544.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(86, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(86, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(86, 180)">180°</button>
+      <span class="deg-label" id="deg-86">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-87">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_022_obj2_1240x930.jpg" id="img-87" loading="lazy" alt="pdf2_img_022_obj2_1240x930.jpg">
+    </div>
+    <div class="name">#88 (pdf2): <strong>pdf2_img_022_obj2_1240x930.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(87, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(87, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(87, 180)">180°</button>
+      <span class="deg-label" id="deg-87">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-88">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_023_obj68_720x1544.jpg" id="img-88" loading="lazy" alt="pdf2_img_023_obj68_720x1544.jpg">
+    </div>
+    <div class="name">#89 (pdf2): <strong>pdf2_img_023_obj68_720x1544.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(88, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(88, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(88, 180)">180°</button>
+      <span class="deg-label" id="deg-88">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-89">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_024_obj71_720x1544.jpg" id="img-89" loading="lazy" alt="pdf2_img_024_obj71_720x1544.jpg">
+    </div>
+    <div class="name">#90 (pdf2): <strong>pdf2_img_024_obj71_720x1544.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(89, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(89, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(89, 180)">180°</button>
+      <span class="deg-label" id="deg-89">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-90">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_025_obj74_720x1544.jpg" id="img-90" loading="lazy" alt="pdf2_img_025_obj74_720x1544.jpg">
+    </div>
+    <div class="name">#91 (pdf2): <strong>pdf2_img_025_obj74_720x1544.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(90, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(90, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(90, 180)">180°</button>
+      <span class="deg-label" id="deg-90">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-91">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_026_obj77_1653x1240.jpg" id="img-91" loading="lazy" alt="pdf2_img_026_obj77_1653x1240.jpg">
+    </div>
+    <div class="name">#92 (pdf2): <strong>pdf2_img_026_obj77_1653x1240.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(91, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(91, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(91, 180)">180°</button>
+      <span class="deg-label" id="deg-91">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-92">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_027_obj80_1653x1240.jpg" id="img-92" loading="lazy" alt="pdf2_img_027_obj80_1653x1240.jpg">
+    </div>
+    <div class="name">#93 (pdf2): <strong>pdf2_img_027_obj80_1653x1240.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(92, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(92, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(92, 180)">180°</button>
+      <span class="deg-label" id="deg-92">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-93">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_028_obj83_1653x1240.jpg" id="img-93" loading="lazy" alt="pdf2_img_028_obj83_1653x1240.jpg">
+    </div>
+    <div class="name">#94 (pdf2): <strong>pdf2_img_028_obj83_1653x1240.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(93, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(93, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(93, 180)">180°</button>
+      <span class="deg-label" id="deg-93">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-94">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_029_obj86_1653x1240.jpg" id="img-94" loading="lazy" alt="pdf2_img_029_obj86_1653x1240.jpg">
+    </div>
+    <div class="name">#95 (pdf2): <strong>pdf2_img_029_obj86_1653x1240.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(94, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(94, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(94, 180)">180°</button>
+      <span class="deg-label" id="deg-94">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-95">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_030_obj89_1653x1240.jpg" id="img-95" loading="lazy" alt="pdf2_img_030_obj89_1653x1240.jpg">
+    </div>
+    <div class="name">#96 (pdf2): <strong>pdf2_img_030_obj89_1653x1240.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(95, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(95, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(95, 180)">180°</button>
+      <span class="deg-label" id="deg-95">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-96">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_031_obj92_1240x1653.jpg" id="img-96" loading="lazy" alt="pdf2_img_031_obj92_1240x1653.jpg">
+    </div>
+    <div class="name">#97 (pdf2): <strong>pdf2_img_031_obj92_1240x1653.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(96, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(96, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(96, 180)">180°</button>
+      <span class="deg-label" id="deg-96">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-97">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_032_obj95_1200x1600.jpg" id="img-97" loading="lazy" alt="pdf2_img_032_obj95_1200x1600.jpg">
+    </div>
+    <div class="name">#98 (pdf2): <strong>pdf2_img_032_obj95_1200x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(97, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(97, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(97, 180)">180°</button>
+      <span class="deg-label" id="deg-97">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-98">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_033_obj98_1200x1600.jpg" id="img-98" loading="lazy" alt="pdf2_img_033_obj98_1200x1600.jpg">
+    </div>
+    <div class="name">#99 (pdf2): <strong>pdf2_img_033_obj98_1200x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(98, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(98, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(98, 180)">180°</button>
+      <span class="deg-label" id="deg-98">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-99">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_034_obj101_1200x1600.jpg" id="img-99" loading="lazy" alt="pdf2_img_034_obj101_1200x1600.jpg">
+    </div>
+    <div class="name">#100 (pdf2): <strong>pdf2_img_034_obj101_1200x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(99, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(99, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(99, 180)">180°</button>
+      <span class="deg-label" id="deg-99">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-100">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_035_obj104_1200x1600.jpg" id="img-100" loading="lazy" alt="pdf2_img_035_obj104_1200x1600.jpg">
+    </div>
+    <div class="name">#101 (pdf2): <strong>pdf2_img_035_obj104_1200x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(100, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(100, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(100, 180)">180°</button>
+      <span class="deg-label" id="deg-100">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-101">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_036_obj107_1200x1600.jpg" id="img-101" loading="lazy" alt="pdf2_img_036_obj107_1200x1600.jpg">
+    </div>
+    <div class="name">#102 (pdf2): <strong>pdf2_img_036_obj107_1200x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(101, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(101, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(101, 180)">180°</button>
+      <span class="deg-label" id="deg-101">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-102">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_037_obj110_1200x1600.jpg" id="img-102" loading="lazy" alt="pdf2_img_037_obj110_1200x1600.jpg">
+    </div>
+    <div class="name">#103 (pdf2): <strong>pdf2_img_037_obj110_1200x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(102, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(102, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(102, 180)">180°</button>
+      <span class="deg-label" id="deg-102">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-103">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_038_obj113_1200x1600.jpg" id="img-103" loading="lazy" alt="pdf2_img_038_obj113_1200x1600.jpg">
+    </div>
+    <div class="name">#104 (pdf2): <strong>pdf2_img_038_obj113_1200x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(103, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(103, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(103, 180)">180°</button>
+      <span class="deg-label" id="deg-103">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-104">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_039_obj116_1200x1600.jpg" id="img-104" loading="lazy" alt="pdf2_img_039_obj116_1200x1600.jpg">
+    </div>
+    <div class="name">#105 (pdf2): <strong>pdf2_img_039_obj116_1200x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(104, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(104, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(104, 180)">180°</button>
+      <span class="deg-label" id="deg-104">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-105">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_040_obj119_1200x1600.jpg" id="img-105" loading="lazy" alt="pdf2_img_040_obj119_1200x1600.jpg">
+    </div>
+    <div class="name">#106 (pdf2): <strong>pdf2_img_040_obj119_1200x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(105, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(105, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(105, 180)">180°</button>
+      <span class="deg-label" id="deg-105">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-106">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_041_obj122_1200x1600.jpg" id="img-106" loading="lazy" alt="pdf2_img_041_obj122_1200x1600.jpg">
+    </div>
+    <div class="name">#107 (pdf2): <strong>pdf2_img_041_obj122_1200x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(106, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(106, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(106, 180)">180°</button>
+      <span class="deg-label" id="deg-106">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-107">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_042_obj125_1200x1600.jpg" id="img-107" loading="lazy" alt="pdf2_img_042_obj125_1200x1600.jpg">
+    </div>
+    <div class="name">#108 (pdf2): <strong>pdf2_img_042_obj125_1200x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(107, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(107, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(107, 180)">180°</button>
+      <span class="deg-label" id="deg-107">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-108">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_043_obj129_1200x1600.jpg" id="img-108" loading="lazy" alt="pdf2_img_043_obj129_1200x1600.jpg">
+    </div>
+    <div class="name">#109 (pdf2): <strong>pdf2_img_043_obj129_1200x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(108, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(108, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(108, 180)">180°</button>
+      <span class="deg-label" id="deg-108">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-109">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_044_obj132_1200x1600.jpg" id="img-109" loading="lazy" alt="pdf2_img_044_obj132_1200x1600.jpg">
+    </div>
+    <div class="name">#110 (pdf2): <strong>pdf2_img_044_obj132_1200x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(109, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(109, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(109, 180)">180°</button>
+      <span class="deg-label" id="deg-109">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-110">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_045_obj135_1200x1600.jpg" id="img-110" loading="lazy" alt="pdf2_img_045_obj135_1200x1600.jpg">
+    </div>
+    <div class="name">#111 (pdf2): <strong>pdf2_img_045_obj135_1200x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(110, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(110, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(110, 180)">180°</button>
+      <span class="deg-label" id="deg-110">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-111">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_046_obj138_1200x1600.jpg" id="img-111" loading="lazy" alt="pdf2_img_046_obj138_1200x1600.jpg">
+    </div>
+    <div class="name">#112 (pdf2): <strong>pdf2_img_046_obj138_1200x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(111, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(111, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(111, 180)">180°</button>
+      <span class="deg-label" id="deg-111">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-112">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_047_obj141_986x1754.jpg" id="img-112" loading="lazy" alt="pdf2_img_047_obj141_986x1754.jpg">
+    </div>
+    <div class="name">#113 (pdf2): <strong>pdf2_img_047_obj141_986x1754.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(112, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(112, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(112, 180)">180°</button>
+      <span class="deg-label" id="deg-112">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-113">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_048_obj144_1240x702.jpg" id="img-113" loading="lazy" alt="pdf2_img_048_obj144_1240x702.jpg">
+    </div>
+    <div class="name">#114 (pdf2): <strong>pdf2_img_048_obj144_1240x702.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(113, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(113, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(113, 180)">180°</button>
+      <span class="deg-label" id="deg-113">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-114">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_049_obj147_1240x702.jpg" id="img-114" loading="lazy" alt="pdf2_img_049_obj147_1240x702.jpg">
+    </div>
+    <div class="name">#115 (pdf2): <strong>pdf2_img_049_obj147_1240x702.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(114, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(114, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(114, 180)">180°</button>
+      <span class="deg-label" id="deg-114">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-115">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_050_obj150_1240x930.jpg" id="img-115" loading="lazy" alt="pdf2_img_050_obj150_1240x930.jpg">
+    </div>
+    <div class="name">#116 (pdf2): <strong>pdf2_img_050_obj150_1240x930.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(115, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(115, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(115, 180)">180°</button>
+      <span class="deg-label" id="deg-115">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-116">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_051_obj153_899x1599.jpg" id="img-116" loading="lazy" alt="pdf2_img_051_obj153_899x1599.jpg">
+    </div>
+    <div class="name">#117 (pdf2): <strong>pdf2_img_051_obj153_899x1599.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(116, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(116, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(116, 180)">180°</button>
+      <span class="deg-label" id="deg-116">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-117">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_052_obj156_1240x697.jpg" id="img-117" loading="lazy" alt="pdf2_img_052_obj156_1240x697.jpg">
+    </div>
+    <div class="name">#118 (pdf2): <strong>pdf2_img_052_obj156_1240x697.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(117, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(117, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(117, 180)">180°</button>
+      <span class="deg-label" id="deg-117">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-118">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_053_obj159_1200x1600.jpg" id="img-118" loading="lazy" alt="pdf2_img_053_obj159_1200x1600.jpg">
+    </div>
+    <div class="name">#119 (pdf2): <strong>pdf2_img_053_obj159_1200x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(118, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(118, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(118, 180)">180°</button>
+      <span class="deg-label" id="deg-118">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-119">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_054_obj162_768x1280.jpg" id="img-119" loading="lazy" alt="pdf2_img_054_obj162_768x1280.jpg">
+    </div>
+    <div class="name">#120 (pdf2): <strong>pdf2_img_054_obj162_768x1280.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(119, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(119, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(119, 180)">180°</button>
+      <span class="deg-label" id="deg-119">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-120">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_055_obj165_780x1040.jpg" id="img-120" loading="lazy" alt="pdf2_img_055_obj165_780x1040.jpg">
+    </div>
+    <div class="name">#121 (pdf2): <strong>pdf2_img_055_obj165_780x1040.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(120, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(120, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(120, 180)">180°</button>
+      <span class="deg-label" id="deg-120">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-121">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_056_obj168_1152x560.jpg" id="img-121" loading="lazy" alt="pdf2_img_056_obj168_1152x560.jpg">
+    </div>
+    <div class="name">#122 (pdf2): <strong>pdf2_img_056_obj168_1152x560.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(121, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(121, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(121, 180)">180°</button>
+      <span class="deg-label" id="deg-121">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-122">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_057_obj171_450x1000.jpg" id="img-122" loading="lazy" alt="pdf2_img_057_obj171_450x1000.jpg">
+    </div>
+    <div class="name">#123 (pdf2): <strong>pdf2_img_057_obj171_450x1000.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(122, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(122, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(122, 180)">180°</button>
+      <span class="deg-label" id="deg-122">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-123">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_058_obj174_903x1600.jpg" id="img-123" loading="lazy" alt="pdf2_img_058_obj174_903x1600.jpg">
+    </div>
+    <div class="name">#124 (pdf2): <strong>pdf2_img_058_obj174_903x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(123, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(123, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(123, 180)">180°</button>
+      <span class="deg-label" id="deg-123">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-124">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_059_obj177_902x1600.jpg" id="img-124" loading="lazy" alt="pdf2_img_059_obj177_902x1600.jpg">
+    </div>
+    <div class="name">#125 (pdf2): <strong>pdf2_img_059_obj177_902x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(124, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(124, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(124, 180)">180°</button>
+      <span class="deg-label" id="deg-124">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-125">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_060_obj180_1240x697.jpg" id="img-125" loading="lazy" alt="pdf2_img_060_obj180_1240x697.jpg">
+    </div>
+    <div class="name">#126 (pdf2): <strong>pdf2_img_060_obj180_1240x697.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(125, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(125, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(125, 180)">180°</button>
+      <span class="deg-label" id="deg-125">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-126">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_061_obj183_1240x697.jpg" id="img-126" loading="lazy" alt="pdf2_img_061_obj183_1240x697.jpg">
+    </div>
+    <div class="name">#127 (pdf2): <strong>pdf2_img_061_obj183_1240x697.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(126, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(126, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(126, 180)">180°</button>
+      <span class="deg-label" id="deg-126">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-127">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_062_obj186_1240x935.jpg" id="img-127" loading="lazy" alt="pdf2_img_062_obj186_1240x935.jpg">
+    </div>
+    <div class="name">#128 (pdf2): <strong>pdf2_img_062_obj186_1240x935.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(127, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(127, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(127, 180)">180°</button>
+      <span class="deg-label" id="deg-127">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-128">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_063_obj190_1240x1648.jpg" id="img-128" loading="lazy" alt="pdf2_img_063_obj190_1240x1648.jpg">
+    </div>
+    <div class="name">#129 (pdf2): <strong>pdf2_img_063_obj190_1240x1648.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(128, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(128, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(128, 180)">180°</button>
+      <span class="deg-label" id="deg-128">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-129">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_064_obj193_1240x930.jpg" id="img-129" loading="lazy" alt="pdf2_img_064_obj193_1240x930.jpg">
+    </div>
+    <div class="name">#130 (pdf2): <strong>pdf2_img_064_obj193_1240x930.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(129, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(129, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(129, 180)">180°</button>
+      <span class="deg-label" id="deg-129">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-130">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_065_obj196_1240x930.jpg" id="img-130" loading="lazy" alt="pdf2_img_065_obj196_1240x930.jpg">
+    </div>
+    <div class="name">#131 (pdf2): <strong>pdf2_img_065_obj196_1240x930.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(130, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(130, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(130, 180)">180°</button>
+      <span class="deg-label" id="deg-130">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-131">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_066_obj199_1240x1643.jpg" id="img-131" loading="lazy" alt="pdf2_img_066_obj199_1240x1643.jpg">
+    </div>
+    <div class="name">#132 (pdf2): <strong>pdf2_img_066_obj199_1240x1643.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(131, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(131, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(131, 180)">180°</button>
+      <span class="deg-label" id="deg-131">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-132">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_067_obj202_1240x930.jpg" id="img-132" loading="lazy" alt="pdf2_img_067_obj202_1240x930.jpg">
+    </div>
+    <div class="name">#133 (pdf2): <strong>pdf2_img_067_obj202_1240x930.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(132, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(132, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(132, 180)">180°</button>
+      <span class="deg-label" id="deg-132">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-133">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_068_obj205_1240x930.jpg" id="img-133" loading="lazy" alt="pdf2_img_068_obj205_1240x930.jpg">
+    </div>
+    <div class="name">#134 (pdf2): <strong>pdf2_img_068_obj205_1240x930.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(133, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(133, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(133, 180)">180°</button>
+      <span class="deg-label" id="deg-133">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-134">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_069_obj208_1240x930.jpg" id="img-134" loading="lazy" alt="pdf2_img_069_obj208_1240x930.jpg">
+    </div>
+    <div class="name">#135 (pdf2): <strong>pdf2_img_069_obj208_1240x930.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(134, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(134, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(134, 180)">180°</button>
+      <span class="deg-label" id="deg-134">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-135">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_070_obj211_1240x1643.jpg" id="img-135" loading="lazy" alt="pdf2_img_070_obj211_1240x1643.jpg">
+    </div>
+    <div class="name">#136 (pdf2): <strong>pdf2_img_070_obj211_1240x1643.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(135, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(135, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(135, 180)">180°</button>
+      <span class="deg-label" id="deg-135">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-136">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_071_obj214_718x1600.jpg" id="img-136" loading="lazy" alt="pdf2_img_071_obj214_718x1600.jpg">
+    </div>
+    <div class="name">#137 (pdf2): <strong>pdf2_img_071_obj214_718x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(136, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(136, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(136, 180)">180°</button>
+      <span class="deg-label" id="deg-136">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-137">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_072_obj217_1240x1643.jpg" id="img-137" loading="lazy" alt="pdf2_img_072_obj217_1240x1643.jpg">
+    </div>
+    <div class="name">#138 (pdf2): <strong>pdf2_img_072_obj217_1240x1643.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(137, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(137, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(137, 180)">180°</button>
+      <span class="deg-label" id="deg-137">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-138">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_073_obj220_1240x556.jpg" id="img-138" loading="lazy" alt="pdf2_img_073_obj220_1240x556.jpg">
+    </div>
+    <div class="name">#139 (pdf2): <strong>pdf2_img_073_obj220_1240x556.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(138, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(138, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(138, 180)">180°</button>
+      <span class="deg-label" id="deg-138">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-139">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_074_obj223_1240x1643.jpg" id="img-139" loading="lazy" alt="pdf2_img_074_obj223_1240x1643.jpg">
+    </div>
+    <div class="name">#140 (pdf2): <strong>pdf2_img_074_obj223_1240x1643.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(139, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(139, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(139, 180)">180°</button>
+      <span class="deg-label" id="deg-139">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-140">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_075_obj226_1240x556.jpg" id="img-140" loading="lazy" alt="pdf2_img_075_obj226_1240x556.jpg">
+    </div>
+    <div class="name">#141 (pdf2): <strong>pdf2_img_075_obj226_1240x556.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(140, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(140, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(140, 180)">180°</button>
+      <span class="deg-label" id="deg-140">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-141">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_076_obj229_716x1600.jpg" id="img-141" loading="lazy" alt="pdf2_img_076_obj229_716x1600.jpg">
+    </div>
+    <div class="name">#142 (pdf2): <strong>pdf2_img_076_obj229_716x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(141, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(141, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(141, 180)">180°</button>
+      <span class="deg-label" id="deg-141">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-142">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_077_obj232_964x1754.jpg" id="img-142" loading="lazy" alt="pdf2_img_077_obj232_964x1754.jpg">
+    </div>
+    <div class="name">#143 (pdf2): <strong>pdf2_img_077_obj232_964x1754.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(142, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(142, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(142, 180)">180°</button>
+      <span class="deg-label" id="deg-142">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-143">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_078_obj235_720x1600.jpg" id="img-143" loading="lazy" alt="pdf2_img_078_obj235_720x1600.jpg">
+    </div>
+    <div class="name">#144 (pdf2): <strong>pdf2_img_078_obj235_720x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(143, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(143, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(143, 180)">180°</button>
+      <span class="deg-label" id="deg-143">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-144">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_079_obj238_963x1280.jpg" id="img-144" loading="lazy" alt="pdf2_img_079_obj238_963x1280.jpg">
+    </div>
+    <div class="name">#145 (pdf2): <strong>pdf2_img_079_obj238_963x1280.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(144, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(144, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(144, 180)">180°</button>
+      <span class="deg-label" id="deg-144">0°</span>
+    </div>
+  </div>
+
+  <div class="card" id="card-145">
+    <div class="img-box">
+      <img src="/extracted/pdf2/pdf2_img_080_obj241_1200x1600.jpg" id="img-145" loading="lazy" alt="pdf2_img_080_obj241_1200x1600.jpg">
+    </div>
+    <div class="name">#146 (pdf2): <strong>pdf2_img_080_obj241_1200x1600.jpg</strong></div>
+    <div class="rot-controls">
+      <button onclick="rotateImg(145, -90)">⟲ -90°</button>
+      <button onclick="rotateImg(145, 90)">⟳ +90°</button>
+      <button onclick="rotateImg(145, 180)">180°</button>
+      <span class="deg-label" id="deg-145">0°</span>
+    </div>
+  </div>
+  </div>
+
+  <script>
+    const rotations = {};
+    function rotateImg(idx, delta) {
+      rotations[idx] = ((rotations[idx] || 0) + delta) % 360;
+      if (rotations[idx] < 0) rotations[idx] += 360;
+      const img = document.getElementById('img-' + idx);
+      img.style.transform = 'rotate(' + rotations[idx] + 'deg)';
+      document.getElementById('deg-' + idx).innerText = rotations[idx] + '°';
+    }
+
+    function exportRotations() {
+      const active = {};
+      for (const [k, v] of Object.entries(rotations)) {
+        if (v !== 0) active[k] = v;
+      }
+      localStorage.setItem('activeRotations', JSON.stringify(active));
+      document.getElementById('export-status').innerText = 'Saved ' + Object.keys(active).length + ' rotated images!';
+      console.log('Rotations:', JSON.stringify(active));
+    }
+  </script>
+</body>
+</html>
