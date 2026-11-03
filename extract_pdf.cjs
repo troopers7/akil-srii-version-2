@@ -13,7 +13,7 @@ function extractImagesFromPdf(pdfPath, outDirPrefix) {
   let match;
   let count = 0;
   let saved = 0;
-  
+
   while ((match = objRegex.exec(str)) !== null) {
     const objNum = match[1];
     const dict = match[3];
@@ -25,13 +25,13 @@ function extractImagesFromPdf(pdfPath, outDirPrefix) {
     const w = wMatch ? parseInt(wMatch[1]) : 0;
     const h = hMatch ? parseInt(hMatch[1]) : 0;
     const streamStart = match.index + match[0].length;
-    
+
     let len = 0;
     const lenMatch = dict.match(/\/Length\s+(\d+)/);
     if (lenMatch) {
       len = parseInt(lenMatch[1]);
     }
-    
+
     let streamBuf;
     if (len > 0) {
       streamBuf = buf.subarray(streamStart, streamStart + len);
@@ -42,7 +42,7 @@ function extractImagesFromPdf(pdfPath, outDirPrefix) {
 
     let imgData = null;
     let ext = 'jpg';
-    
+
     if (dict.includes('/FlateDecode') && dict.includes('/DCTDecode')) {
       try {
         imgData = zlib.inflateSync(streamBuf);
