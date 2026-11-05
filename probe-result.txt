@@ -1,0 +1,2 @@
+﻿JSON  -> {"ok":true,"status":200,"body":"{\"success\":\"false\",\"message\":\"This form needs Activation. We've sent you an email containing an 'Activate Form' link. Just click it and your form will be actived!\"}"}
+MULTI -> {"ok":true,"status":200,"body":"{\"success\":\"false\",\"message\":\"This form needs Activation. We've sent you an email containing an 'Activate Form' link. Just click it and your form will be actived!\"}"}

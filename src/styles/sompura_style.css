@@ -1,0 +1,784 @@
+/* ==========================================================================
+   Rajesh Sompura Inspired Styling Layer for Sri Akil Temple Architecture
+   Rich traditional luxury, gold accents, top bar, nav dropdowns, gallery,
+   invitations viewer with zoom/rotate controls, running projects grid, and map.
+   ========================================================================== */
+
+/* Utility Contact Bar - Placed stably below main header nav */
+.sompura-topbar {
+  background: #1c1815;
+  color: #d6cfc7;
+  font-size: 0.76rem;
+  border-top: 1px solid rgba(169, 67, 25, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  position: relative;
+  z-index: 1002;
+  width: 100%;
+}
+
+.sompura-topbar-inner {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding: 8px var(--container-pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.sompura-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.sompura-topbar-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #e2dad2;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.sompura-topbar-item:hover {
+  color: #f0b46d;
+}
+
+.sompura-topbar-item svg {
+  color: #c5852d;
+  flex-shrink: 0;
+}
+
+.sompura-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.sompura-topbar-socials {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sompura-social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: #e2dad2;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.sompura-social-icon:hover {
+  background: var(--primary);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.sompura-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.sompura-search-input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 4px 12px 4px 28px;
+  font-size: 0.72rem;
+  color: #fff;
+  width: 140px;
+  transition: all 0.3s ease;
+}
+
+.sompura-search-input:focus {
+  outline: none;
+  width: 190px;
+  border-color: #f0b46d;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.sompura-search-icon {
+  position: absolute;
+  left: 8px;
+  width: 13px;
+  height: 13px;
+  color: #c5852d;
+  pointer-events: none;
+}
+
+/* Nav Dropdowns */
+.nav-dropdown-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.nav-dropdown-trigger svg {
+  transition: transform 0.2s ease;
+}
+
+.nav-dropdown-wrapper:hover .nav-dropdown-trigger svg,
+.nav-dropdown-wrapper:focus-within .nav-dropdown-trigger svg {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 230px;
+  background: #25201c;
+  border: 1px solid rgba(197, 133, 45, 0.3);
+  border-radius: 6px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  padding: 8px 0;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1010;
+}
+
+.nav-dropdown-wrapper:hover .nav-dropdown-menu,
+.nav-dropdown-wrapper:focus-within .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav-dropdown-item a {
+  display: block;
+  padding: 10px 18px;
+  font-size: 0.78rem;
+  color: #f2ece4;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.nav-dropdown-item a:hover {
+  background: rgba(169, 67, 25, 0.25);
+  color: #f0b46d;
+  padding-left: 22px;
+}
+
+.nav-dropdown-item a.badge-hot::after {
+  content: 'HD';
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  background: #a94319;
+  color: #fff;
+  padding: 2px 5px;
+  border-radius: 3px;
+  vertical-align: middle;
+}
+
+/* Running Projects Section (Rajesh Sompura style 4-column grid) */
+.running-projects-section {
+  padding-block: clamp(60px, 8vw, 100px);
+  background: #f8f6f2;
+}
+
+.running-projects-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 48px;
+}
+
+.running-projects-header h2 {
+  font-size: clamp(2rem, 3.8vw, 2.8rem);
+  color: #302b28;
+  margin: 12px 0;
+}
+
+.running-projects-header p {
+  color: #68686a;
+  font-size: 1.05rem;
+}
+
+.running-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 1200px) {
+  .running-projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .running-projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.running-project-card {
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.running-project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(169, 67, 25, 0.14);
+  border-color: rgba(169, 67, 25, 0.3);
+}
+
+.running-project-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #231c18;
+}
+
+.running-project-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.running-project-card:hover .running-project-img {
+  transform: scale(1.06);
+}
+
+.running-project-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #a94319;
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.running-project-badge.ongoing {
+  background: #c5852d;
+}
+
+.running-project-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.running-project-loc {
+  font-size: 0.72rem;
+  color: #a94319;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.running-project-title {
+  font-size: 1.15rem;
+  color: #2b2522;
+  margin: 0 0 10px;
+  line-height: 1.35;
+}
+
+.running-project-desc {
+  font-size: 0.86rem;
+  color: #646260;
+  line-height: 1.5;
+  margin-bottom: 18px;
+  flex: 1;
+}
+
+.running-project-footer {
+  border-top: 1px solid #f0ede8;
+  padding-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.running-project-link {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #a94319;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: gap 0.2s ease;
+}
+
+.running-project-link:hover {
+  color: #873819;
+  gap: 8px;
+}
+
+/* ==========================================================================
+   OUR PROJECTS — INVITATIONS (HD Patrika Showcase)
+   ========================================================================== */
+.invitations-page-header {
+  background: linear-gradient(180deg, #26211e 0%, #1a1715 100%);
+  color: #ffffff;
+  padding: calc(var(--header-height) + 50px) var(--container-pad) 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.invitations-page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(197, 133, 45, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.invitations-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(197, 133, 45, 0.18);
+  border: 1px solid rgba(197, 133, 45, 0.35);
+  color: #f0b46d;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.invitations-header-title {
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  color: #f9f6f0;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.invitations-header-sub {
+  max-width: 820px;
+  margin: 0 auto 30px;
+  color: #cfc8be;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.invitations-controls-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.invitations-filter-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2dad2;
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.invitations-filter-btn:hover,
+.invitations-filter-btn.active {
+  background: #a94319;
+  border-color: #a94319;
+  color: #ffffff;
+}
+
+.invitations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 32px;
+  margin-block: 48px;
+}
+
+.invitation-card {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(197, 133, 45, 0.2);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.invitation-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(169, 67, 25, 0.18);
+  border-color: #a94319;
+}
+
+.invitation-card-media {
+  position: relative;
+  background: #201a17;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.invitation-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+  background: #181412;
+}
+
+.invitation-card:hover .invitation-card-img {
+  transform: scale(1.03);
+}
+
+.invitation-hd-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #f0b46d;
+  border: 1px solid rgba(197, 133, 45, 0.5);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+}
+
+.invitation-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(30, 24, 20, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.invitation-card:hover .invitation-card-overlay {
+  opacity: 1;
+}
+
+.invitation-inspect-btn {
+  background: #a94319;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transform: translateY(10px);
+  transition: transform 0.25s ease;
+}
+
+.invitation-card:hover .invitation-inspect-btn {
+  transform: translateY(0);
+}
+
+.invitation-card-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background: #ffffff;
+}
+
+.invitation-card-temple {
+  font-size: 0.72rem;
+  color: #a94319;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.invitation-card-title {
+  font-size: 1.15rem;
+  color: #2b2522;
+  margin: 0 0 8px;
+  line-height: 1.35;
+}
+
+.invitation-card-subtitle {
+  font-size: 0.85rem;
+  color: #646260;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.invitation-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #f0ede8;
+  padding-top: 14px;
+}
+
+.invitation-view-btn {
+  background: none;
+  border: 1px solid #a94319;
+  color: #a94319;
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.invitation-view-btn:hover {
+  background: #a94319;
+  color: #fff;
+}
+
+/* ==========================================================================
+   TEMPLE GALLERY (All 99 Extracted Authentic Photos)
+   ========================================================================== */
+.temple-gallery-header {
+  background: linear-gradient(180deg, #26211e 0%, #1a1715 100%);
+  color: #ffffff;
+  padding: calc(var(--header-height) + 50px) var(--container-pad) 60px;
+  text-align: center;
+}
+
+.temple-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-block: 30px;
+}
+
+.temple-gallery-item {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #181412;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  display: block;
+}
+
+.temple-gallery-item.tall,
+.temple-gallery-item.wide {
+  grid-row: auto !important;
+  grid-column: auto !important;
+  aspect-ratio: 1 / 1 !important;
+}
+
+.temple-gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.temple-gallery-item:hover .temple-gallery-img {
+  transform: scale(1.05);
+}
+
+.temple-gallery-item-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(15, 12, 10, 0.88) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.temple-gallery-item:hover .temple-gallery-item-overlay {
+  opacity: 1;
+}
+
+.temple-gallery-item-category {
+  font-size: 0.65rem;
+  color: #f0b46d;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 4px;
+}
+
+.temple-gallery-item-title {
+  font-size: 0.95rem;
+  margin: 0;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+/* ==========================================================================
+   HD LIGHTBOX VIEWER WITH ZOOM & ROTATE CONTROLS
+   ========================================================================== */
+.hd-lightbox-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 8, 7, 0.94);
+  z-index: 4000;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.hd-lightbox-modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.hd-lightbox-toolbar {
+  padding: 14px 24px;
+  background: rgba(20, 16, 14, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: #fff;
+  z-index: 10;
+}
+
+.hd-lightbox-title-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.hd-lightbox-title {
+  font-size: 1.1rem;
+  color: #f0b46d;
+  margin: 0;
+}
+
+.hd-lightbox-subtitle {
+  font-size: 0.78rem;
+  color: #a89f96;
+}
+
+.hd-lightbox-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hd-tool-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  width: 38px;
+  height: 38px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1.1rem;
+}
+
+.hd-tool-btn:hover {
+  background: #a94319;
+  border-color: #a94319;
+}
+
+.hd-lightbox-viewport {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: grab;
+}
+
+.hd-lightbox-viewport:active {
+  cursor: grabbing;
+}
+
+.hd-lightbox-img-wrapper {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center center;
+  max-width: 90vw;
+  max-height: 82vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hd-lightbox-img {
+  max-width: 100%;
+  max-height: 82vh;
+  object-fit: contain;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+}
+
+/* 4-Column Footer with Embedded Map */
+.footer-map-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-map-container {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  margin-top: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.footer-map-iframe {
+  width: 100%;
+  height: 180px;
+  border: 0;
+  display: block;
+}

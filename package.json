@@ -1,0 +1,19 @@
+{
+  "name": "sri-akil-temple-architecture",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "sharp": "^0.35.5",
+    "vite": "^5.2.0"
+  },
+  "dependencies": {
+    "jspdf": "^4.2.1"
+  }
+}
